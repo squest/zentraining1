@@ -20,8 +20,22 @@
 (defn new-product
 	[[x & xs]]
 	(if x
-		(* x (new-product xs))
+		(*' x (new-product xs))
 		1))
+
+(defn sum
+	[[x & xs]]
+	(if x
+		(+' x (sum xs))
+		0))
+
+(defn sum2
+	([xs] (sum2 xs 0))
+	([[x & xs] res]
+		(if x
+			(sum2 xs (+' x res))
+			res)))
+
 
 (defn new-take
 	[n [x & xs]]
@@ -65,15 +79,11 @@
 
 (defn max-2-numbers
 	[a b]
-	(if (>= a b)
-		a
-		b))
+	(if (>= a b) a b))
 
 (defn min-2-numbers
 	[a b]
-	(if (<= a b)
-		a
-		b))
+	(if (<= a b) a b))
 
 
 (defn new-maxi
@@ -93,3 +103,58 @@
 	(if (empty? xs)
 		1
 		(inc (new-count xs))))
+
+(defn factsum
+	[i]
+	(if (= i 1)
+		1
+		(+ i (factsum (- i 1)))))
+
+(defn tail-fact
+	([i]
+		(tail-fact i 0))
+	([i res]
+	 (if (= i 1)
+		 (+ res 1)
+		 (tail-fact (- i 1) (+ res i)))))
+
+(defn oot
+	[f & args]
+	(apply f args))
+
+(defn fact-loop
+	[i]
+	(loop [n i res 0]
+		(if (= n 0)
+			[i res]
+			(recur (- n 1) (+ res n)))))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
