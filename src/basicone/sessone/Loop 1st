@@ -1,3 +1,4 @@
+
 ;; A1. Product 
 (defn new-product
   [[x & xs]]
