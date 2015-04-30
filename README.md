@@ -22,3 +22,5 @@ Problems 81, 85, 114, 115, 116, 117, 173, 174, 191, 315, 345, 493
 ## Euler friend-key
 
 squest 550933_b849d72cb7352cf28e0678a5f9226029
+skadinyo 688912_baa1f3d6ce284da043bbabf9c0b0903f
+juliapinter 770775_fdad60d2c207d0c97d506cde89077b8d
