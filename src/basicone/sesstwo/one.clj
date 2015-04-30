@@ -46,6 +46,41 @@
     []
     (conj (rev2 (rest xs)) (first xs))))
 
+(defn sum-genap
+  [ls]
+  (loop [[x & xs] ls res 0]
+    (if x
+      (if (even? x)
+        (recur xs (+ res x))
+        (recur xs res))
+      res)))
+
+(defn sum-two
+  [l1 l2]
+  (loop [[x & xs] l1 [y & ys] l2 res []]
+    (if x
+      (recur xs ys (conj res (+ x y)))
+      res)))
+
+(defn fibo
+  [lim]
+  (loop [a 2 b 1 res 0]
+    (if (> a lim)
+      res
+      (if (even? a)
+       (recur (+ a b) a (+ res a))
+       (recur (+ a b) a res)))))
+
+
+
+
+
+
+
+
+
+
+
 
 
 
