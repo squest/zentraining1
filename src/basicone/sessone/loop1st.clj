@@ -1,3 +1,4 @@
+(ns basicone.sessone.loop1st)
 
 ;; A1. Product 
 (defn new-product
