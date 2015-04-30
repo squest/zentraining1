@@ -1,4 +1,4 @@
-# Training materials for fledging Clojurians wannabe
+# Training materials for fledgling Clojurians wannabe
 
 ### Concepts
 
