@@ -1,4 +1,5 @@
 ; Reimplement Reduce
+(ns basicone.sessthree.donna-exercise)
 
 (defn new-reduce 
   ([f coll]
