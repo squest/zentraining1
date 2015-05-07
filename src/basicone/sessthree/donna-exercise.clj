@@ -13,6 +13,14 @@
         (recur xs (f res x))
         res))))
 
+(defn fibo-less
+  ([lim]
+    (fibo-less 1 0 lim))
+  ([a b lim]
+    (if (> a lim)
+      []
+      (cons b (fibo-less (+ a b) a lim)))))
+
 ; (max-by second []) => (max-by second [[1 2] [3 4] [0 10] [3 8]]) = [0 10]
 
 (defn mapping-stuff
