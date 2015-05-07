@@ -67,8 +67,16 @@
   [fg fs maps]
   (->> (group-by fg maps)
        (sort-by #(:somekey (key %)))
-       (map #(sort-by fs (val %)))
+       (map #(vector (key %) (sort-by fs (val %))))
        (into {})))
+
+
+(defn max'
+  [[x & xs]]
+  (if (first xs)
+    (let [nmax (max' xs)]
+      (if (> x nmax) x nmax))
+    x))
 
 
 
