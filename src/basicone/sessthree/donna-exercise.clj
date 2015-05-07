@@ -1,5 +1,6 @@
-; Reimplement Reduce
 (ns basicone.sessthree.donna-exercise)
+
+;;; Reimplement Reduce Panjang
 
 (defn new-reduce 
   ([f coll]
@@ -13,6 +14,16 @@
         (recur xs (f res x))
         res))))
 
+;;; Reimplement Reduce Multi-Arity beneran
+(defn new-new-reduce
+  ([f coll] (new-new-reduce f (first coll) (rest coll)))
+  ([f acc coll]
+    (loop [[x & xs] coll res acc]
+      (if x
+        (recur xs (f res x))
+        res))))
+      
+;;; Contoh dari Sabda tentang Multy-Arity
 (defn fibo-less
   ([lim]
     (fibo-less 1 0 lim))
