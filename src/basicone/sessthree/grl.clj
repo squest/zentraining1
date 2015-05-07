@@ -1,3 +1,5 @@
+(ns basicone.sessthree.grl)
+
 (defn sum
   [[x & xs]]
   (if x (+ x (sum xs)) 0))
@@ -35,17 +37,17 @@
 (defn gproductloop
   [x-product]
   (loop [[x & xs] x-product res 1]
-    (if 
-      x(recur xs (* res x))
-      res))))
+    (if x
+      (recur xs (* res x))
+      res)))
 
 (defn gmaxloop
   [max-vector]
   (loop [[x & xs] max-vector res []]
-    (if
-      xs (if (> x xs) 
-            (conj (rest res) x) 
-            (recur xs))
+    (if xs
+      (if (> x xs)
+        (conj (rest res) x)
+        (recur xs))
       res)))
 
 ;; 
