@@ -31,7 +31,9 @@
   [n]
   #(+ n %))
 
-;;
+;; 1. re-implement reduce (reduce #(whatever %1 %2) xs)
+;; 2. bikin function max-by & min-by -> ex. (max-by f xs)
+
 
 
 
