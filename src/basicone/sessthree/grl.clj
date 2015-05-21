@@ -129,12 +129,43 @@
       a
       (recur (dec x) (*' a b) (inc b)))))
 
+(defn gpangkat
+  [a b]
+  (if (< b 1)
+    1
+     (* a (gpangkat a (dec b)))))
 
 
 
 
+(defn gpangkat2
+  [x y]
+  (if (< y 1)
+    1
+    (* x (gpangkat2 x (dec y)))))
+
+(defn fac-recur
+  [a]
+  (if (< a 1)
+    1
+    (* a (fac-recur (dec a)))))
 
 
+(defn fibo-list 
+  [i]
+  (nth (iterate #(conj % 
+                       (+ (last %)
+                          (last (butlast %))))
+                [1 1]) 
+       (- i 1)))
+
+(def lfib (cons 1 (cons 2 (lazy-seq (map + lfib (rest lfib))))))
+
+(defn max-recur
+  [[x & xs]]
+  (if x 
+    (max x (max-recur xs))
+    0))
 
 
 
