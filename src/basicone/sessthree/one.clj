@@ -70,13 +70,25 @@
        (map #(vector (key %) (sort-by fs (val %))))
        (into {})))
 
-
 (defn max'
   [[x & xs]]
   (if (first xs)
     (let [nmax (max' xs)]
       (if (> x nmax) x nmax))
     x))
+
+(defn qsort
+  [coll]
+  (if (empty? coll)
+    []
+    (let [[x & xs] coll
+          smaller (filter #(<= % x) xs)
+          larger (filter #(> % x) xs)]
+      (concat (qsort smaller) [x] (qsort larger)))))
+
+(defn brojol
+  [a & ar]
+  (reduce #(let [[f n] %2] (f %1 n)) a (partition 2 ar)))
 
 
 
