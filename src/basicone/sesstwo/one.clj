@@ -68,10 +68,14 @@
     (if (> a lim)
       res
       (if (even? a)
-       (recur (+ a b) a (+ res a))
-       (recur (+ a b) a res)))))
+        (recur (+ a b) a (+ res a))
+        (recur (+ a b) a res)))))
 
-
+(defn numcol
+  [num]
+  (if (< num 10)
+    [num]
+    (conj (numcol (quot num 10)) (rem num 10))))
 
 
 
