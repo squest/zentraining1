@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 ([:dependencies ([org.clojure/clojure "1.7.0-alpha6"] [org.clojure/tools.nrepl "0.2.6" :exclusions ([org.clojure/clojure]) :scope "test"] [clojure-complete/clojure-complete "0.2.3" :exclusions ([org.clojure/clojure]) :scope "test"])])
+=======
+([:dependencies ([cider/cider-nrepl "0.8.1"] [org.clojure/clojure "1.7.0-alpha6"] [org.clojure/tools.nrepl "0.2.6" :exclusions ([org.clojure/clojure]) :scope "test"] [clojure-complete/clojure-complete "0.2.3" :exclusions ([org.clojure/clojure]) :scope "test"])])
+>>>>>>> 919e83d5afae4b00976929928d5abc0a2b21f120
