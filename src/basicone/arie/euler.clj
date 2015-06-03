@@ -1,5 +1,24 @@
 (ns basicone.arie.euler)
 
+;#sabdaquest
+(defn mapcycle [] (slurp "G:/Arie/Games/Counter-Strike 1.6/cstrike/mapcycle.txt"))
+(def mapdir "G:/Arie/Games/Counter-strike 1.6/cstrike/mapcycle/")
+(defn mapparser [a] 
+    (map #(apply str %) 
+         (remove #(= (first %) \return) 
+                 (partition-by #(or (= \return %) (= \newline %)) a))))
+(defn mapdirs [n]
+  (map #(str "map" % ".txt") (range 1 (inc n))))
+
+(defn snpmap [maps] 
+  (apply str (interpose "\r\n" (shuffle (mapparser maps)))))
+
+(defn createmap [map content]
+  (spit (str mapdir map) content))
+
+(defn shufflemap [n]
+  (map #(createmap % (snpmap (mapcycle))) (mapdirs n)))
+
 ;#1
 (reduce + (distinct (concat (range 0 1000 5) (range 0 1000 3))))
 
