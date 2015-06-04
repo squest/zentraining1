@@ -29,7 +29,7 @@
     x (*' x (power x (dec y)))))
 
 (defn seq-pow [x y]
-  (reverse (cons 1 (map #(power y %) (range 1 (inc x))))))
+  (reverse (cons 1 (map #(power y %) (range 1 x)))))
 
 ;;(seq-pow 4 4)
 ;;(256 64 16 4)
@@ -225,20 +225,36 @@
 
 ;;26
 (defn to-ten [x]
-  (let [y (dec (count (explode-to-digits x)))]
-   (reduce + (map #(* %1 %2) (explode-to-digits x) (seq-pow 4 y)))) )
+  (let [y (count (explode-to-digits x))]
+   (reduce + (map #(* %1 %2) (explode-to-digits x) (seq-pow y 4)))) )
 
 ;;(defn to-four)
 
-(defn decide-biggest-value-four [x y]
-  (if (<= y x) (recur x (* y 4)) (if (> y x) (quot y 4 ) y)))
-
-(defn base-four [x y]
- (if (< 1 y)
-   (do
-    (print (quot x y))
-    (recur (rem x y) (quot y 4)))
-   (quot x y)))
 
 (defn test2 [coll]
-  (reduce *' (map #(to-ten %) coll)))
+  (apply *' (map #(to-ten %) coll)))
+
+(defn fizzbuzz [x]
+  (loop [y 1]
+    (if (not= y (+ 1 x))
+      (cond
+        (= 0 (rem y 3) (rem y 5))
+        (do
+          (print "FizzBuzz")
+          (println "")
+          (recur (+ 1 y)))
+       (= 0 (rem y 3))
+        (do
+          (print "Fizz")
+          (println "")
+          (recur (+ 1 y)))
+        (= 0 (rem y 5))
+        (do
+          (print "Buzz")
+          (println "")
+          (recur (+ 1 y)))
+
+        :else (do
+                (println y)
+                (recur (+ 1 y))))
+      )))
