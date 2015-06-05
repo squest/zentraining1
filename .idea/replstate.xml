@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ReplState" timestamp="1433511984897">{:repl-history {:ide [], :local [&quot;(in-ns \n  basicone.dsapoetra.zenleague.p25)&quot; &quot;(in-ns 'basicone.dsapoetra.zenleague.p25)&quot; &quot;()&quot; &quot;(explode-to-digits 100)&quot; &quot;(+ 2 2)&quot; &quot;(count (lala 1\n             ))&quot; &quot;(count (lala 1))&quot; &quot;(+ 2 2\n   )&quot;], :remote []}}</component>
+  <component name="ReplState" timestamp="1433512705796">{:repl-history {:ide [], :local [&quot;(in-ns \n  basicone.dsapoetra.zenleague.p25)&quot; &quot;(in-ns 'basicone.dsapoetra.zenleague.p25)&quot; &quot;()&quot; &quot;(explode-to-digits 100)&quot; &quot;(+ 2 2)&quot; &quot;(count (lala 1\n             ))&quot; &quot;(count (lala 1))&quot; &quot;(+ 2 2\n   )&quot;], :remote []}}</component>
 </project>

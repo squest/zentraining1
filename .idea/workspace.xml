@@ -2,18 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ac05419-8d6f-47dc-8dbe-3be722b39dc7" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/basicone/core$fn__23.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/basicone/core$loading__5319__auto____21.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/basicone/core$ngalivalue.class" afterPath="$PROJECT_DIR$/target/classes/basicone/core$ngalivalue.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/basicone/core$sum_SINGLEQUOTE_.class" afterPath="$PROJECT_DIR$/target/classes/basicone/core$sum_SINGLEQUOTE_.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/basicone/core__init.class" afterPath="$PROJECT_DIR$/target/classes/basicone/core__init.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.nrepl-port" afterPath="$PROJECT_DIR$/.nrepl-port" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/basicone/dsapoetra/4clojure/p25.clj" afterPath="$PROJECT_DIR$/src/basicone/dsapoetra/4clojure/p25.clj" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/basicone/dsapoetra/zenleague/p25.clj" afterPath="$PROJECT_DIR$/src/basicone/dsapoetra/zenleague/p25.clj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/basicone/dsapoetra/4clojure/p50.clj" afterPath="$PROJECT_DIR$/src/basicone/dsapoetra/4clojure/p50.clj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/basicone/dsapoetra/4clojure/p75.clj" afterPath="$PROJECT_DIR$/src/basicone/dsapoetra/4clojure/p75.clj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/META-INF/maven/basicone/basicone/pom.properties" afterPath="$PROJECT_DIR$/target/classes/META-INF/maven/basicone/basicone/pom.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/repl-port" afterPath="$PROJECT_DIR$/target/repl-port" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/replstate.xml" afterPath="$PROJECT_DIR$/.idea/replstate.xml" />
     </list>
     <ignored path="zentraining1.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,6 +24,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="p25.clj" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/basicone/dsapoetra/zenleague/p25.clj">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.79310346">
+              <caret line="261" column="4" selection-start-line="261" selection-start-column="4" selection-end-line="261" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="p25.clj" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/basicone/dsapoetra/4clojure/p25.clj">
           <provider selected="true" editor-type-id="text-editor">
@@ -94,10 +94,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="p175.clj" pinned="false" current-in-tab="true">
+      <file leaf-file-name="p175.clj" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/basicone/dsapoetra/4clojure/p175.clj">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.062068965">
+            <state vertical-scroll-proportion="0.0">
               <caret line="3" column="33" selection-start-line="3" selection-start-column="33" selection-end-line="3" selection-end-column="33" />
               <folding />
             </state>
@@ -117,7 +117,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/basicone/dsapoetra/zenleague/p25.clj" />
         <option value="$PROJECT_DIR$/src/basicone/dsapoetra/4clojure/125.clj" />
         <option value="$PROJECT_DIR$/src/basicone/dsapoetra/4clojure/175.clj" />
         <option value="$PROJECT_DIR$/src/basicone/dsapoetra/4clojure/p175.clj" />
@@ -127,6 +126,7 @@
         <option value="$PROJECT_DIR$/src/basicone/dsapoetra/4clojure/p150.clj" />
         <option value="$PROJECT_DIR$/src/basicone/dsapoetra/4clojure/p75.clj" />
         <option value="$PROJECT_DIR$/src/basicone/dsapoetra/4clojure/p50.clj" />
+        <option value="$PROJECT_DIR$/src/basicone/dsapoetra/zenleague/p25.clj" />
       </list>
     </option>
   </component>
@@ -455,14 +455,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/basicone/dsapoetra/zenleague/p25.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29655173">
-          <caret line="280" column="6" selection-start-line="280" selection-start-column="6" selection-end-line="280" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/basicone/dsapoetra/4clojure/p25.clj">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -513,8 +505,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/basicone/dsapoetra/4clojure/p175.clj">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.062068965">
+        <state vertical-scroll-proportion="0.0">
           <caret line="3" column="33" selection-start-line="3" selection-start-column="33" selection-end-line="3" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/basicone/dsapoetra/zenleague/p25.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.79310346">
+          <caret line="261" column="4" selection-start-line="261" selection-start-column="4" selection-end-line="261" selection-end-column="4" />
           <folding />
         </state>
       </provider>
