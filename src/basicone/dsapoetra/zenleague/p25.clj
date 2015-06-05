@@ -263,3 +263,4 @@
 
 (defn lala [a] (if (not= a 12345678987654321)
                  (concat (explode-to-digits a) (lazy-seq (lala (+' 1 a))))))
+
