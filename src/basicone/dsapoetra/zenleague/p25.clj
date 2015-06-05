@@ -274,6 +274,9 @@
  ;;1 4 6 4 1- 16
 ;;1 5 10 10 5 1-32
 
+  ;;1 3-4
+ ;;1 6 9-16
+;;1 9 27 27-64
 (defn sum-bino [x]
   (power ))
 
@@ -284,7 +287,22 @@
   (if (not= x 1)
    (cons (count (factors x)) (lazy-seq (sum-ffactorial (- x 1))))))
 
-(defn fib [a b] (cons a (lazy-seq (fib b (+' b a)))))
+;;31
+(defn fiba [a] (if (not= a 12345678987654322)
+                 (concat (explode-to-digits a) (lazy-seq (fiba (+' 1 a))))))
 
+
+;;garis
 (defn garis [x]
   (filter #(= %2 (+ (* 2 %1) 3)) x))
+
+;;mantani
+(defn bekasi []
+  (+ (* 9999 19) (* 9999 19 26)))
+
+;;(defn count )
+
+
+
+(defn lala [a] (if (not= a 12345678987654321)
+                 (concat (explode-to-digits a) (lazy-seq (lala (+' 1 a))))))
