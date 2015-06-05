@@ -1,9 +1,12 @@
 (ns basicone.sessthree.one)
 
+<<<<<<< Updated upstream
 ;; ayo woi
 
 ;; Topic : higher order function
 
+=======
+>>>>>>> Stashed changes
 (defn sum
   [[x & xs]]
   (if x (+ x (sum xs)) 0))
@@ -31,6 +34,7 @@
   [n]
   #(+ n %))
 
+<<<<<<< Updated upstream
 ;; 1. re-implement reduce (reduce #(whatever %1 %2) xs)
 ;; 2. bikin function max-by & min-by -> ex. (max-by f xs)
 
@@ -89,6 +93,10 @@
 (defn brojol
   [a & ar]
   (reduce #(let [[f n] %2] (f %1 n)) a (partition 2 ar)))
+=======
+;; 
+
+>>>>>>> Stashed changes
 
 
 
