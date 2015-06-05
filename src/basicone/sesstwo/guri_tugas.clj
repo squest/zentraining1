@@ -11,7 +11,7 @@
 
 
 
-; check
+; check`
 
 (defn sum 
   [xs]
@@ -36,7 +36,7 @@
    (gdrop (dec a) xs)))
 
 (defn gproduct 
-  [x]
+  [x]s
   (if (empty? x)
     1
     (* (first x) (gproduct (rest x)))))

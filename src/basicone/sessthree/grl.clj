@@ -161,22 +161,66 @@
 
 (def lfib (cons 1 (cons 2 (lazy-seq (map + lfib (rest lfib))))))
 
+
+(defn range-recur
+  [x]
+  (if (< x 1)
+    []
+  (conj (range-recur (dec x)) (dec x))))
+
 (defn max-recur
   [[x & xs]]
-  (if x 
+  (if xs
     (max x (max-recur xs))
-    0))
+    x))
 
+(defn drop-recur
+  [a [x & xs]]
+  (if (< a 2)
+    xs
+    (drop-recur (dec a) xs)))
 
+(defn min-recur
+  [[x & xs]]
+  (if xs
+    (min x (min-recur xs))
+    x))
 
+(defn take-recur
+  [a [x & xs]]
+  (if (< a 1)
+    []
+    (cons x (take-recur (dec a) xs))))
 
+(defn duplicate-recur
+ [[x & xs]]
+ (if x
+   (cons x (cons x (duplicate-recur xs)))
+   []))
 
+(defn no-rep
+  [[x & xs]]
+  (if x 
+    (if (= x (first xs))
+       (no-rep xs)
+       (cons x (no-rep xs)))
+    []))
 
+(defn goto
+  [a x] 
+      (cond
+        (> a 0) (goto (dec a) (conj (vec (rest x)) (first x)))
+        (< a 0) (goto (inc a) (cons (last x) (vec (butlast x))))
+        :else (concat (vec x))))
 
+(defn vaktor
+  [x]
+  (if (< x 1)
+    (cond
+      (= 0 (mod x (dec x))) (cons (dec x) vaktor) 
+      :else (vaktor x (dec x)))
+    []))
 
-
-
-
-
-
-
+(defn ff 
+  ([x] (ff 1 x))
+  ([i x] ()))
