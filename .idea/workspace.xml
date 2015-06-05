@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ac05419-8d6f-47dc-8dbe-3be722b39dc7" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/basicone/dsapoetra/euler/p25.clj" afterPath="$PROJECT_DIR$/src/basicone/dsapoetra/euler/p25.clj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/websample/project.clj" afterPath="$PROJECT_DIR$/websample/project.clj" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/replstate.xml" afterPath="$PROJECT_DIR$/.idea/replstate.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="zentraining1.iws" />
     <ignored path=".idea/workspace.xml" />
