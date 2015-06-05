@@ -34,8 +34,6 @@
 (defn seq-pow [x y]
   (reverse (cons 1 (map #(power y %) (range 1 x)))))
 
-;;(seq-pow 4 4)
-;;(256 64 16 4)
 
 (def triangle-nums   (map #(/ (* % (+ % 1)) 2) (iterate inc 1)))
 
@@ -43,6 +41,8 @@
   (if (or (=  3 (count (factors x))) (= 4 (count (factors x))))
       true
       false))
+
+
 ;; no 3
 
 (defn decide-biggest-value [x y]
@@ -132,12 +132,12 @@
 
 ;;12
 
+
+
 ;;13
 
 (defn fibo []
   (apply max (take 100 (fib 1 1))))
-
-
 
 ;;14
 
@@ -150,6 +150,7 @@
         (println x)
         (under-ten-thousand (+ 1 x)))
       (apply + (first-hundred (- x 1)))))
+
 ;;15
 (defn sumtrim [x y]
   (+' (apply max (take x (trim 1 1 1))) (apply max (take y (trim 1 1 1)))))
@@ -159,6 +160,12 @@
 (defn sumprime [x]
   (apply + (first-hundred x)))
 ;;(- (sumprime 2000) (sumprime 999))
+
+
+;;18
+(defn sum-ffactorial [x]
+  (if (not= x 1)
+    (cons (count (factors x)) (lazy-seq (sum-ffactorial (- x 1))))))
 
 
 ;;20
@@ -212,6 +219,7 @@
        (+' (rem y 100)) (println y) (recur (- y 1)))
      y)))
 
+
 ;;25
 (defn tipe-srime [x y z]
   (if (not= 0 x)
@@ -241,50 +249,18 @@
 ;;(defn to-four)
 
 
-(defn test2 [coll]
-  (apply *' (map #(to-ten %) coll)))
-
-(defn fizzbuzz [x]
-  (loop [y 1]
-    (if (not= y (+ 1 x))
-      (cond
-        (= 0 (rem y 3) (rem y 5))
-        (do
-          (print "FizzBuzz")
-          (println "")
-          (recur (+ 1 y)))
-       (= 0 (rem y 3))
-        (do
-          (print "Fizz")
-          (println "")
-          (recur (+ 1 y)))
-        (= 0 (rem y 5))
-        (do
-          (print "Buzz")
-          (println "")
-          (recur (+ 1 y)))
-
-        :else (do
-                (println y)
-                (recur (+ 1 y))))
-      )))
-   ;; 1 1 -2
-   ;;1 2 1 -4
-  ;;1 3 3 1 -8
- ;;1 4 6 4 1- 16
-;;1 5 10 10 5 1-32
-
-(defn sum-bino [x]
-  (power ))
+;;30 mantani
+(defn bekasi []
+  (+ (* 9999 19) (* 9999 19 26)))
 
 
+;;31
+(defn fiba [a] (if (not= a 1234568)
+                 (concat (explode-to-digits a) (lazy-seq (fiba (+' 1 a))))))
 
-;;18
-(defn sum-ffactorial [x]
-  (if (not= x 1)
-   (cons (count (factors x)) (lazy-seq (sum-ffactorial (- x 1))))))
 
-(defn fib [a b] (cons a (lazy-seq (fib b (+' b a)))))
+;;32
 
-(defn garis [x]
-  (filter #(= %2 (+ (* 2 %1) 3)) x))
+(defn lala [a] (if (not= a 12345678987654321)
+                 (concat (explode-to-digits a) (lazy-seq (lala (+' 1 a))))))
+
