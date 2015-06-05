@@ -60,3 +60,6 @@
 (defn margin-natural [x]
   (- (power (reduce + (range 1 (+ x 1))) 2) (reduce + (map #(power % 2) (range 1 (+ x 1))))))
 
+;;7
+(defn first-n-prime [x]
+  (take x (filter prime? (range 1 Integer/MAX_VALUE))))

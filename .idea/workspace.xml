@@ -2,30 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ac05419-8d6f-47dc-8dbe-3be722b39dc7" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/basicone/dsapoetra/10.clj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/basicone/dsapoetra/11.clj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/basicone/dsapoetra/12.clj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/basicone/dsapoetra/15.clj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/basicone/dsapoetra/16.clj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/basicone/dsapoetra/17.clj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/basicone/dsapoetra/18.clj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/basicone/dsapoetra/19.clj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/basicone/dsapoetra/25.clj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/basicone/dsapoetra/3.clj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/basicone/dsapoetra/4.clj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/basicone/dsapoetra/5.clj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/basicone/dsapoetra/6.clj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/basicone/dsapoetra/7.clj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/basicone/dsapoetra/8.clj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/basicone/dsapoetra/9.clj" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.nrepl-port" afterPath="$PROJECT_DIR$/.nrepl-port" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/stale/extract-native.dependencies" afterPath="$PROJECT_DIR$/target/stale/extract-native.dependencies" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/basicone/dsapoetra/zenleague/p25.clj" afterPath="$PROJECT_DIR$/src/basicone/dsapoetra/zenleague/p25.clj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/META-INF/maven/basicone/basicone/pom.properties" afterPath="$PROJECT_DIR$/target/classes/META-INF/maven/basicone/basicone/pom.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/repl-port" afterPath="$PROJECT_DIR$/target/repl-port" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/basicone/dsapoetra/euler/p25.clj" afterPath="$PROJECT_DIR$/src/basicone/dsapoetra/euler/p25.clj" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/replstate.xml" afterPath="$PROJECT_DIR$/.idea/replstate.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/basicone/dsapoetra/util.clj" afterPath="$PROJECT_DIR$/src/basicone/dsapoetra/util.clj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="zentraining1.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -49,8 +27,8 @@
       <file leaf-file-name="p25.clj" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/basicone/dsapoetra/zenleague/p25.clj">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="31" column="32" selection-start-line="28" selection-start-column="0" selection-end-line="31" selection-end-column="32" />
+            <state vertical-scroll-proportion="-7.935484">
+              <caret line="92" column="18" selection-start-line="91" selection-start-column="0" selection-end-line="92" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -59,8 +37,8 @@
       <file leaf-file-name="p25.clj" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/basicone/dsapoetra/euler/p25.clj">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8551724">
-              <caret line="61" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+            <state vertical-scroll-proportion="-0.26206896">
+              <caret line="9" column="45" selection-start-line="6" selection-start-column="0" selection-end-line="9" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -471,7 +449,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -480,7 +458,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="REPL" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2484375" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="REPL" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2484375" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Leiningen" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -584,26 +562,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/basicone/dsapoetra/euler/5.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.04137931">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/basicone/dsapoetra/zenleague/p25.clj">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="31" column="32" selection-start-line="28" selection-start-column="0" selection-end-line="31" selection-end-column="32" />
+        <state vertical-scroll-proportion="-7.935484">
+          <caret line="92" column="18" selection-start-line="91" selection-start-column="0" selection-end-line="92" selection-end-column="55" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/basicone/dsapoetra/euler/p25.clj">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8551724">
-          <caret line="61" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+        <state vertical-scroll-proportion="-0.26206896">
+          <caret line="9" column="45" selection-start-line="6" selection-start-column="0" selection-end-line="9" selection-end-column="45" />
           <folding />
         </state>
       </provider>
