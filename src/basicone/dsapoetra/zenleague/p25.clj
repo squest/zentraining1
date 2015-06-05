@@ -8,6 +8,9 @@
 (defn factorial [n]
   (apply * (range 1 (inc n))))
 
+(defn factorial-seven [n]
+  (apply * (range (- n 6) (inc n))))
+
 (defn fib [a b] (cons a (lazy-seq (fib b (+' b a)))))
 
 (defn trim [a b c] (cons a (cons b (lazy-seq (trim c (+' b c a) (+' b c (+' b c a)))))))
@@ -34,6 +37,7 @@
 ;;(seq-pow 4 4)
 ;;(256 64 16 4)
 
+(def triangle-nums   (map #(/ (* % (+ % 1)) 2) (iterate inc 1)))
 
 (defn srime? [x]
   (if (or (=  3 (count (factors x))) (= 4 (count (factors x))))
@@ -189,6 +193,12 @@
 
 
 ;;23
+(defn power-to-seven [a b c d e]
+  "a b c d e merefer 5 kategori buku"
+  (+ (factorial-seven a) (factorial-seven b) (factorial-seven c) (factorial-seven d) (factorial-seven e)))
+
+
+;;24
 (defn modul [x]
  (if (not= x 0)
    (+' (rem x 100) (modul (- x 1)))
@@ -258,3 +268,23 @@
                 (println y)
                 (recur (+ 1 y))))
       )))
+   ;; 1 1 -2
+   ;;1 2 1 -4
+  ;;1 3 3 1 -8
+ ;;1 4 6 4 1- 16
+;;1 5 10 10 5 1-32
+
+(defn sum-bino [x]
+  (power ))
+
+
+
+;;18
+(defn sum-ffactorial [x]
+  (if (not= x 1)
+   (cons (count (factors x)) (lazy-seq (sum-ffactorial (- x 1))))))
+
+(defn fib [a b] (cons a (lazy-seq (fib b (+' b a)))))
+
+(defn garis [x]
+  (filter #(= %2 (+ (* 2 %1) 3)) x))
