@@ -1,5 +1,9 @@
 (ns basicone.arie.euler)
 
+;#globalfunc
+(declare pisdig)
+(declare dignum)
+
 ;#sabdaquest
 (defn mapcycle [] (slurp "G:/Arie/Games/Counter-Strike 1.6/cstrike/mapcycle.txt"))
 (def mapdir "G:/Arie/Games/Counter-strike 1.6/cstrike/mapcycle/")
@@ -67,6 +71,33 @@
 
 (defn p3 [nf nl] (- (smosq nf nl) (sqosm nf nl)))
 
+;#7
+(defn allfactor [n]
+    (filter #(= (rem n %) 0) (range 1 (inc n))))
+
+(defn prime? [n]
+  (cond
+    (= n 2) true
+    (= n 3) true
+    (even? n) false
+    (= (rem n 3) 0) false
+    :else (= (count (allfactor n)) 2)))
+
+(defn primeitr [n]
+  (loop [a n]
+    (cond
+      (even? a) (recur (inc a))
+      (= (rem a 3) 0) (recur (inc a))
+      (prime? a) a
+      :else (recur (inc a)))))
+
+(defn p07 [n]
+  (loop [i n
+         j 2]
+    (if (= 1 i)
+      j
+      (recur (dec i) (primeitr (inc j))))))
+
 ;#14
 (defn collatz [sn]
   (loop [n sn
@@ -106,7 +137,9 @@
 (defn p9 [] (reduce * (first (filter #(phyta %) (pfor 1000)))))
 
 ;#8
-(def danum "7316717653133062491922511967442657474235534919493496983520312774506326239578318016984801869478851843858615607891129494954595017379583319528532088055111254069874715852386305071569329096329522744304355766896648950445244523161731856403098711121722383113622298934233803081353362766142828064444866452387493035890729629049156044077239071381051585930796086670172427121883998797908792274921901699720888093776657273330010533678812202354218097512545405947522435258490771167055601360483958644670632441572215539753697817977846174064955149290862569321978468622482839722413756570560574902614079729686524145351004748216637048440319989000889524345065854122758866688116427171479924442928230863465674813919123162824586178664583591245665294765456828489128831426076900422421902267105562632111110937054421750694165896040807198403850962455444362981230987879927244284909188845801561660979191338754992005240636899125607176060588611646710940507754100225698315520005593572972571636269561882670428252483600823257530420752963450")
+(defn danum [] (apply str 
+                      (remove #(= \newline %) 
+                              (slurp "src/basicone/arie/danum.txt"))))
 
 (defn multstring [st] (reduce * (prodig (apply str (take 13 st)))))
 
@@ -117,13 +150,98 @@
                  vc
                  (recur (apply str (rest n)) (conj vc (multstring n)))))))
 
-(p8 danum)
+(p8 (danum))
+
+;#10
+(defn primesum [n]
+  (loop [j 3
+         val 2]
+    (if (>= j n)
+      val
+      (recur (primeitr (inc j)) (+ val j)))))
+
 
 ;#13
-(def p13nu (slurp "src/basicone/arie/p13.txt"))
+(def p13num (slurp "src/basicone/arie/p13.txt"))
 
 (defn p13 []
   (apply str (take 10 (str (reduce + (map read-string (mapparser (p13num))))))))
+
+;#17
+(defn numlet [n]
+  (cond
+    (= n 1) "one"
+    (= n 2) "two"
+    (= n 3) "three"
+    (= n 4) "four"
+    (= n 5) "five"
+    (= n 6) "six"
+    (= n 7) "seven"
+    (= n 8) "eight"
+    (= n 9) "nine"
+    (= n 10) "ten"
+    (= n 11) "eleven"
+    (= n 12) "twelve"
+    (= n 13) "thirteen"
+    (= n 14) "fourteen"
+    (= n 15) "fifteen"
+    (= n 16) "sixteen"
+    (= n 17) "seventeen"
+    (= n 18) "eighteen"
+    (= n 19) "nineteen"
+    (= n 20) "twenty"
+    (= n 30) "thirty"
+    (= n 40) "forty"
+    (= n 50) "fifty"
+    (= n 60) "sixty"
+    (= n 70) "seventy"
+    (= n 80) "eighty"
+    (= n 90) "ninety"
+    (= n 100) "hundred"
+    (= n 1000) "thousand"))
+
+(defn jbrsingle [n]
+  (reverse (map * (reverse (pisdig n)) [1 10 100 1000])))
+
+(defn jbrrest [n]
+  (let [stnrest (apply str (rest (str n)))
+        nrest (Integer/parseInt stnrest)]
+    (cond
+      (= nrest 00) ""
+      (= nrest 11) '(10 11)
+      (= nrest 12) '(10 12)
+      (= nrest 13) '(10 13)
+      (= nrest 14) '(10 14)
+      (= nrest 15) '(10 15)
+      (= nrest 16) '(10 16)
+      (= nrest 17) '(10 17)
+      (= nrest 18) '(10 18)
+      (= nrest 19) '(10 19)
+      (= nrest 20) '(10 20)
+      (= stnrest "08") '(10 8)
+      (= stnrest "09") '(10 9)
+      :else (list 10 (jbrsingle nrest)))))
+
+(defn jabar [n]
+  (cond
+    (= (dignum n) 3) (cons (first (pisdig n)) (flatten (vector 100 (jbrrest n))))
+    (= (dignum n) 4) (cons (first (pisdig n)) (flatten (vector 1000)))
+    :else (jbrsingle n)))
+
+(defn letsum [n]
+  (cond 
+    (< n 21) (numlet n)
+    (= n 30) (numlet n)
+    (= n 40) (numlet n)
+    (= n 50) (numlet n)
+    (= n 60) (numlet n)
+    (= n 70) (numlet n)
+    (= n 80) (numlet n)
+    (= n 90) (numlet n)
+    :else (map numlet (jabar n))))
+
+(defn cletsum [n]
+  (count (apply str (letsum n))))
 
 ;#20
 
@@ -182,5 +300,3 @@
 
 (defn p28 []
   (reduce + (diagspi 1001)))
-
-
