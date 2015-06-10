@@ -3,6 +3,8 @@
 ;#globalfunc
 (declare pisdig)
 (declare dignum)
+(declare prime?)
+(declare nextprime)
 
 ;#sabdaquest
 (defn mapcycle [] (slurp "G:/Arie/Games/Counter-Strike 1.6/cstrike/mapcycle.txt"))
@@ -37,6 +39,24 @@
       (recur n n2 (+ n1 n2) (conj vc (+ n1 n2))))))
 
 (reduce + (filter even? (fibo 4000000)))
+
+;#3
+(defn primefactor? [div n]
+  (and (prime? div) (= 0 (rem n div))))
+
+(defn nextprimefactor [div n]
+  (loop [i div
+         j n]
+    (if (primefactor? i j)
+      i
+      (recur (nextprime (inc i)) j))))
+
+(defn maxprime [n]
+  (loop [i (nextprimefactor 3 n)
+         j n]
+    (if (prime? j)
+      j
+      (recur (nextprimefactor (+ i 2) j) (/ j i)))))
 
 ;#4
 (defn firsthalf [st] (take (/ (count st) 2) st))
@@ -77,26 +97,21 @@
 
 (defn prime? [n]
   (cond
-    (= n 2) true
-    (= n 3) true
     (even? n) false
     (= (rem n 3) 0) false
-    :else (= (count (allfactor n)) 2)))
+    (not-any? #(= 0 (rem n %)) (range 3 (inc (Math/sqrt n)) 2)) true))
 
-(defn primeitr [n]
-  (loop [a n]
-    (cond
-      (even? a) (recur (inc a))
-      (= (rem a 3) 0) (recur (inc a))
-      (prime? a) a
-      :else (recur (inc a)))))
+(defn nextprime [n]
+    (if (prime? n) 
+      n
+      (recur (inc n))))
 
 (defn p07 [n]
   (loop [i n
          j 2]
     (if (= 1 i)
       j
-      (recur (dec i) (primeitr (inc j))))))
+      (recur (dec i) (nextprime (inc j))))))
 
 ;#14
 (defn collatz [sn]
@@ -158,9 +173,35 @@
          val 2]
     (if (>= j n)
       val
-      (recur (primeitr (inc j)) (+ val j)))))
+      (recur (nextprime (+ j 2)) (+ val j)))))
 
 
+;#11
+(defn num11 []
+  (mapparser (slurp "src/basicone/arie/p11.txt")))
+
+(defn parsenum [st]
+  (map #(apply str %) 
+       (remove #(= \space (first %)) 
+               (partition-by #(= \space %) st))))
+
+(defn maxadj [nums]
+  (apply * 
+         (take 4 
+               (reverse (sort (map #(Integer/parseInt %) (parsenum nums)))))))
+
+(defn mapmaxadj [nums]
+  (apply max (map maxadj nums)))
+
+(defn down [nums]
+  (map #(first (parsenum %)) nums))
+
+(defn mapdown [xs]
+  (loop [vc []
+         nums xs]
+    (if (some empty? xs)
+      vc
+      (recur (cons (apply vector (down xs)) vc) (map rest (map parsenum xs))))))
 ;#13
 (def p13num (slurp "src/basicone/arie/p13.txt"))
 
