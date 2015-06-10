@@ -193,15 +193,25 @@
 (defn mapmaxadj [nums]
   (apply max (map maxadj nums)))
 
+(defn parsednum []
+  (map parsenum (num11)))
+
 (defn down [nums]
-  (map #(first (parsenum %)) nums))
+  (map #(first %) nums))
 
 (defn mapdown [xs]
   (loop [vc []
          nums xs]
-    (if (some empty? xs)
+    (if (some empty? nums)
       vc
-      (recur (cons (apply vector (down xs)) vc) (map rest (map parsenum xs))))))
+      (recur (cons (apply vector (down nums)) vc) (map rest nums)))))
+
+(defn maxdown [nums]
+  (apply * (take 4 (reverse (sort (map #(Integer/parseInt %) nums))))))
+
+(defn mapmaxdown [nums]
+  (apply max (map maxdown nums)))
+
 ;#13
 (def p13num (slurp "src/basicone/arie/p13.txt"))
 
