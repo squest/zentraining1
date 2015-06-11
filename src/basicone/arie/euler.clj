@@ -180,18 +180,23 @@
 (defn num11 []
   (mapparser (slurp "src/basicone/arie/p11.txt")))
 
+(defn fouradj [nums]
+  (apply max (loop [mx []
+                    vc nums]
+               (if (<= (count vc) 3)
+                 mx
+                 (recur (cons (apply * (take 4 vc)) mx) (rest vc))))))
+
 (defn parsenum [st]
   (map #(apply str %) 
        (remove #(= \space (first %)) 
                (partition-by #(= \space %) st))))
 
 (defn maxadj [nums]
-  (apply * 
-         (take 4 
-               (reverse (sort (map #(Integer/parseInt %) (parsenum nums)))))))
+  (fouradj (map #(Integer/parseInt %) (parsenum nums))))
 
-(defn mapmaxadj [nums]
-  (apply max (map maxadj nums)))
+(defn mapmaxadj []
+  (apply max (map maxadj (num11))))
 
 (defn parsednum []
   (map parsenum (num11)))
@@ -207,10 +212,64 @@
       (recur (cons (apply vector (down nums)) vc) (map rest nums)))))
 
 (defn maxdown [nums]
-  (apply * (take 4 (reverse (sort (map #(Integer/parseInt %) nums))))))
+  (fouradj (map #(Integer/parseInt %) nums)))
 
-(defn mapmaxdown [nums]
-  (apply max (map maxdown nums)))
+(defn mapmaxdown []
+  (apply max (map maxdown (mapdown (parsednum)))))
+
+(defn diag [nums]
+  (map #(nth %1 %2 nil) nums (range 0 20)))
+
+(defn mapdiagright [xs]
+  (loop [vc []
+         nums xs]
+    (if (some empty? nums)
+      vc
+      (recur (cons (apply vector (diag nums)) vc) (map rest nums)))))
+
+(defn filtdiagright []
+  (filter #(<= 4 (count %)) 
+          (map #(remove nil? %) (mapdiagright (parsednum)))))
+
+(defn filtdiagrightbtm []
+  (filter #(<= 4 (count %)) 
+          (map #(remove nil? %) (mapdiagright 
+                                  (map reverse (reverse (parsednum)))))))
+
+(defn parsedmapnum [nums]
+  (map #(Integer/parseInt %) nums))
+
+(defn maxdiagrighttop []
+  (apply max (map fouradj (map parsedmapnum (filtdiagright)))))
+
+(defn maxdiagrightbtm []
+  (apply max (map fouradj (map parsedmapnum (filtdiagrightbtm)))))
+
+(defn maxdiagright []
+  (max (maxdiagrightbtm) (maxdiagrighttop)))
+
+(defn filtdiagleft []
+  (filter #(<= 4 (count %)) 
+          (map #(remove nil? %) 
+               (mapdiagright (map reverse (parsednum))))))
+
+(defn filtdiagleftbtm []
+  (filter #(<= 4 (count %)) 
+          (map #(remove nil? %) 
+               (mapdiagright (reverse (parsednum))))))
+
+(defn maxdiaglefttop []
+  (apply max (map fouradj (map parsedmapnum (filtdiagleft)))))
+
+(defn maxdiagleftbtm []
+  (apply max (map fouradj (map parsedmapnum (filtdiagleftbtm)))))
+
+
+(defn maxdiagleft []
+  (max (maxdiaglefttop) (maxdiagleftbtm)))
+
+(defn maxmap []
+  (max (maxdiagleft) (maxdiagright) (mapmaxadj) (mapmaxdown)))
 
 ;#13
 (def p13num (slurp "src/basicone/arie/p13.txt"))
@@ -351,3 +410,10 @@
 
 (defn p28 []
   (reduce + (diagspi 1001)))
+
+;#48
+(defn selfpow [num]
+  (apply * (take num (repeat num))))
+
+(defn p48 [nums]
+  (apply str (take-last 10 (str (apply + (map selfpow (range 1N nums)))))))
