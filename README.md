@@ -47,20 +47,18 @@ leledumboalbino 798123_db0026a7048fe308eec1419c6f39066c
 
 ### 4 Clojure status
 
-http://www.4clojure.com/user/squest  
-http://www.4clojure.com/user/skadinyo  
-http://www.4clojure.com/user/calvin91  
-http://www.4clojure.com/user/mavbozo  
-http://www.4clojure.com/user/memeri  
-http://www.4clojure.com/user/0dsapoetra  
-http://www.4clojure.com/user/arie741  
-http://www.4clojure.com/user/awol  
-http://www.4clojure.com/user/arifianbiing  
-http://www.4clojure.com/user/leledumbo  
-http://www.4clojure.com/user/gurielamp  
-http://www.4clojure.com/user/ularnegeri  
-http://www.4clojure.com/user/wisnumulya  
-http://www.4clojure.com/user/wilonaarieta  
+<a href="http://www.4clojure.com/user/squest" target="_blank">squest</a>  
+<a href="http://www.4clojure.com/user/skadinyo" target="_blank">skadinyo</a>  
+<a href="http://www.4clojure.com/user/calvin91" target="_blank">calvin91</a>  
+<a href="http://www.4clojure.com/user/0dsapoetra" target="_blank">0dsapoetra</a>  
+<a href="http://www.4clojure.com/user/arie741" target="_blank">arie741</a>  
+<a href="http://www.4clojure.com/user/awol" target="_blank">awol</a>  
+<a href="http://www.4clojure.com/user/leledumbo" target="_blank">leledumbo</a>  
+<a href="http://www.4clojure.com/user/gurielamp" target="_blank">gurielamp</a>  
+<a href="http://www.4clojure.com/user/arifianbiing" target="_blank">arifianbiing</a>  
+<a href="http://www.4clojure.com/user/wisnumulya" target="_blank">wisnumulya</a>  
+<a href="http://www.4clojure.com/user/ularnegeri" target="_blank">ularnegeri</a>  
+
 
 
 
