@@ -92,3 +92,6 @@
          ", max value: " first 
          " with index: " (count (list-fibo-maxval 1 1 first)))
     (max-fibo-digits second (+' first second) max-digits)))
+
+(defn indextovalue-fibo [index]
+  ())

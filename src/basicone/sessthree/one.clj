@@ -1,12 +1,9 @@
 (ns basicone.sessthree.one)
 
-<<<<<<< Updated upstream
 ;; ayo woi
 
 ;; Topic : higher order function
 
-=======
->>>>>>> Stashed changes
 (defn sum
   [[x & xs]]
   (if x (+ x (sum xs)) 0))
@@ -34,7 +31,6 @@
   [n]
   #(+ n %))
 
-<<<<<<< Updated upstream
 ;; 1. re-implement reduce (reduce #(whatever %1 %2) xs)
 ;; 2. bikin function max-by & min-by -> ex. (max-by f xs)
 
@@ -92,11 +88,35 @@
 
 (defn brojol
   [a & ar]
-  (reduce #(let [[f n] %2] (f %1 n)) a (partition 2 ar)))
-=======
-;; 
+  (reduce #(let [[f n] %2] (f %1 n))
+          a
+          (partition 2 ar)))
 
->>>>>>> Stashed changes
+(def fibo
+  (->> (map + (lazy-seq fibo) (lazy-seq (rest fibo)))
+       (cons 2)
+       (cons 1)))
+
+(def lfibo
+  (->> (iterate #(let [[a b] %] [b (+ a b)]) [1 2])
+       (map first)))
+
+(def lfibo2
+  (->> (iterate #(let [[a b] %]
+                   (cons (+ a b) %))
+                [1 1])
+       (map first)))
+
+(defn listo
+  [lim]
+  (->> (range 1 lim)
+       (iterate rest)
+       (take-while not-empty)
+       (map #(reductions + %))))
+
+
+
+
 
 
 
