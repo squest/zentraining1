@@ -1,11 +1,18 @@
 (ns basicone.arie.euler)
 
+;#globalfunc
+(declare pisdig)
+(declare dignum)
+(declare prime?)
+(declare nextprime)
+(declare parseToInt)
+
 ;#sabdaquest
 (defn mapcycle [] (slurp "G:/Arie/Games/Counter-Strike 1.6/cstrike/mapcycle.txt"))
 (def mapdir "G:/Arie/Games/Counter-strike 1.6/cstrike/mapcycle/")
 (defn mapparser [a] 
     (map #(apply str %) 
-         (remove #(= (first %) \return) 
+         (remove #(or (= (first %) \return) (= (first %) \newline)) 
                  (partition-by #(or (= \return %) (= \newline %)) a))))
 (defn mapdirs [n]
   (map #(str "map" % ".txt") (range 1 (inc n))))
@@ -34,6 +41,24 @@
 
 (reduce + (filter even? (fibo 4000000)))
 
+;#3
+(defn primefactor? [div n]
+  (and (prime? div) (= 0 (rem n div))))
+
+(defn nextprimefactor [div n]
+  (loop [i div
+         j n]
+    (if (primefactor? i j)
+      i
+      (recur (nextprime (inc i)) j))))
+
+(defn maxprime [n]
+  (loop [i (nextprimefactor 3 n)
+         j n]
+    (if (prime? j)
+      j
+      (recur (nextprimefactor (+ i 2) j) (/ j i)))))
+
 ;#4
 (defn firsthalf [st] (take (/ (count st) 2) st))
 
@@ -47,6 +72,16 @@
 
 (defn maxpalin [ls1 ls2] (apply max (filter palin? (mulcarte ls1 ls2))))
 
+;#5
+(defn factors [n coll]
+  (every? true? (map #(= (rem n %) 0) coll)))
+
+(defn p5 [coll]
+  (loop [a false
+         b 2520]
+    (if (true? a)
+      (dec b)
+      (recur (factors b coll) (inc b)))))
 
 ;#6
 (defn square [num] (* num num))
@@ -56,6 +91,25 @@
 (defn smosq [nf nl] (square (reduce + (range nf (+ nl 1)))))
 
 (defn p3 [nf nl] (- (smosq nf nl) (sqosm nf nl)))
+
+;#7
+(defn prime? [n]
+  (cond
+    (even? n) false
+    (= (rem n 3) 0) false
+    (not-any? #(= 0 (rem n %)) (range 3 (inc (Math/sqrt n)) 2)) true))
+
+(defn nextprime [n]
+    (if (prime? n) 
+      n
+      (recur (inc n))))
+
+(defn p07 [n]
+  (loop [i n
+         j 2]
+    (if (= 1 i)
+      j
+      (recur (dec i) (nextprime (inc j))))))
 
 ;#14
 (defn collatz [sn]
@@ -83,8 +137,22 @@
 
 (apply +' (prodig (pow 2 1000)))
 
+;#9
+(defn phyta [[c b a]]
+  (and (< a b c) (= (+ (square a) (square b)) (square c)) (= 1000 (+ a b c))))
+
+(defn pfor [n]
+  (for [n1 (range 1 (inc n))
+        n3 (range 1 n1)
+        n2 (range (inc n3) n1)]
+    [n1 n2 n3]))
+
+(defn p9 [] (reduce * (first (filter #(phyta %) (pfor 1000)))))
+
 ;#8
-(def danum "7316717653133062491922511967442657474235534919493496983520312774506326239578318016984801869478851843858615607891129494954595017379583319528532088055111254069874715852386305071569329096329522744304355766896648950445244523161731856403098711121722383113622298934233803081353362766142828064444866452387493035890729629049156044077239071381051585930796086670172427121883998797908792274921901699720888093776657273330010533678812202354218097512545405947522435258490771167055601360483958644670632441572215539753697817977846174064955149290862569321978468622482839722413756570560574902614079729686524145351004748216637048440319989000889524345065854122758866688116427171479924442928230863465674813919123162824586178664583591245665294765456828489128831426076900422421902267105562632111110937054421750694165896040807198403850962455444362981230987879927244284909188845801561660979191338754992005240636899125607176060588611646710940507754100225698315520005593572972571636269561882670428252483600823257530420752963450")
+(defn danum [] (apply str 
+                      (remove #(= \newline %) 
+                              (slurp "src/basicone/arie/danum.txt"))))
 
 (defn multstring [st] (reduce * (prodig (apply str (take 13 st)))))
 
@@ -95,7 +163,249 @@
                  vc
                  (recur (apply str (rest n)) (conj vc (multstring n)))))))
 
-(p8 danum)
+(p8 (danum))
+
+;#10
+(defn primesum [n]
+  (loop [j 3
+         val 2]
+    (if (>= j n)
+      val
+      (recur (nextprime (+ j 2)) (+ val j)))))
+
+
+;#11
+(defn num11 []
+  (mapparser (slurp "src/basicone/arie/p11.txt")))
+
+(defn fouradj [nums]
+  (apply max (loop [mx []
+                    vc nums]
+               (if (<= (count vc) 3)
+                 mx
+                 (recur (cons (apply * (take 4 vc)) mx) (rest vc))))))
+
+(defn parsenum [st]
+  (map #(apply str %) 
+       (remove #(= \space (first %)) 
+               (partition-by #(= \space %) st))))
+
+(defn maxadj [nums]
+  (fouradj (map #(Integer/parseInt %) (parsenum nums))))
+
+(defn mapmaxadj []
+  (apply max (map maxadj (num11))))
+
+(defn parsednum []
+  (map parsenum (num11)))
+
+(defn down [nums]
+  (map #(first %) nums))
+
+(defn mapdown [xs]
+  (loop [vc []
+         nums xs]
+    (if (some empty? nums)
+      vc
+      (recur (cons (apply vector (down nums)) vc) (map rest nums)))))
+
+(defn maxdown [nums]
+  (fouradj (map #(Integer/parseInt %) nums)))
+
+(defn mapmaxdown []
+  (apply max (map maxdown (mapdown (parsednum)))))
+
+(defn diag [nums]
+  (map #(nth %1 %2 nil) nums (range 0 20)))
+
+(defn mapdiagright [xs]
+  (loop [vc []
+         nums xs]
+    (if (some empty? nums)
+      vc
+      (recur (cons (apply vector (diag nums)) vc) (map rest nums)))))
+
+(defn filtdiagright []
+  (filter #(<= 4 (count %)) 
+          (map #(remove nil? %) (mapdiagright (parsednum)))))
+
+(defn filtdiagrightbtm []
+  (filter #(<= 4 (count %)) 
+          (map #(remove nil? %) (mapdiagright 
+                                  (map reverse (reverse (parsednum)))))))
+
+(defn parsedmapnum [nums]
+  (map #(Integer/parseInt %) nums))
+
+(defn maxdiagrighttop []
+  (apply max (map fouradj (map parsedmapnum (filtdiagright)))))
+
+(defn maxdiagrightbtm []
+  (apply max (map fouradj (map parsedmapnum (filtdiagrightbtm)))))
+
+(defn maxdiagright []
+  (max (maxdiagrightbtm) (maxdiagrighttop)))
+
+(defn filtdiagleft []
+  (filter #(<= 4 (count %)) 
+          (map #(remove nil? %) 
+               (mapdiagright (map reverse (parsednum))))))
+
+(defn filtdiagleftbtm []
+  (filter #(<= 4 (count %)) 
+          (map #(remove nil? %) 
+               (mapdiagright (reverse (parsednum))))))
+
+(defn maxdiaglefttop []
+  (apply max (map fouradj (map parsedmapnum (filtdiagleft)))))
+
+(defn maxdiagleftbtm []
+  (apply max (map fouradj (map parsedmapnum (filtdiagleftbtm)))))
+
+
+(defn maxdiagleft []
+  (max (maxdiaglefttop) (maxdiagleftbtm)))
+
+(defn maxmap []
+  (max (maxdiagleft) (maxdiagright) (mapmaxadj) (mapmaxdown)))
+
+;#12 
+(defn halffactor [n]
+      (filter #(= (rem n %) 0) (range 1 (inc (Math/sqrt n)))))
+
+(defn allfactor [n]
+  (distinct
+    (concat (halffactor n) (map #(/ n %) (halffactor n)))))
+
+(defn factor? [n ft]
+  (integer? (/ ft n)))
+
+(defn trianumfct [num]
+  (loop [n 1
+         tn 0]
+    (if (>= (count (allfactor tn)) num)
+      tn
+      (recur (inc n) (+ tn n)))))
+
+
+
+;#13
+(def p13num (slurp "src/basicone/arie/p13.txt"))
+
+(defn p13 []
+  (apply str (take 10 (str (reduce + (map read-string (mapparser (p13num))))))))
+
+;#17
+(defn numlet [n]
+  (cond
+    (= n 1) "one"
+    (= n 2) "two"
+    (= n 3) "three"
+    (= n 4) "four"
+    (= n 5) "five"
+    (= n 6) "six"
+    (= n 7) "seven"
+    (= n 8) "eight"
+    (= n 9) "nine"
+    (= n 10) "ten"
+    (= n 11) "eleven"
+    (= n 12) "twelve"
+    (= n 13) "thirteen"
+    (= n 14) "fourteen"
+    (= n 15) "fifteen"
+    (= n 16) "sixteen"
+    (= n 17) "seventeen"
+    (= n 18) "eighteen"
+    (= n 19) "nineteen"
+    (= n 20) "twenty"
+    (= n 30) "thirty"
+    (= n 40) "forty"
+    (= n 50) "fifty"
+    (= n 60) "sixty"
+    (= n 70) "seventy"
+    (= n 80) "eighty"
+    (= n 90) "ninety"
+    (= n 100) "hundred"
+    (= n 1000) "thousand"))
+
+(defn jbrsingle [n]
+  (reverse (map * (reverse (pisdig n)) [1 10 100 1000])))
+
+(defn jbrrest [n]
+  (let [stnrest (apply str (rest (str n)))
+        nrest (Integer/parseInt stnrest)]
+    (cond
+      (= nrest 00) ""
+      (= nrest 11) '(10 11)
+      (= nrest 12) '(10 12)
+      (= nrest 13) '(10 13)
+      (= nrest 14) '(10 14)
+      (= nrest 15) '(10 15)
+      (= nrest 16) '(10 16)
+      (= nrest 17) '(10 17)
+      (= nrest 18) '(10 18)
+      (= nrest 19) '(10 19)
+      (= nrest 20) '(10 20)
+      (= stnrest "08") '(10 8)
+      (= stnrest "09") '(10 9)
+      :else (list 10 (jbrsingle nrest)))))
+
+(defn jabar [n]
+  (cond
+    (= (dignum n) 3) (cons (first (pisdig n)) (flatten (vector 100 (jbrrest n))))
+    (= (dignum n) 4) (cons (first (pisdig n)) (flatten (vector 1000)))
+    :else (jbrsingle n)))
+
+(defn letsum [n]
+  (cond 
+    (< n 21) (numlet n)
+    (= n 30) (numlet n)
+    (= n 40) (numlet n)
+    (= n 50) (numlet n)
+    (= n 60) (numlet n)
+    (= n 70) (numlet n)
+    (= n 80) (numlet n)
+    (= n 90) (numlet n)
+    :else (map numlet (jabar n))))
+
+(defn cletsum [n]
+  (count (apply str (letsum n))))
+
+;#18
+(defn p18num []
+  (mapv #(apply vector %) 
+    (mapv parseToInt
+          (mapparser
+            (slurp "src/basicone/arie/p18.txt")))))
+
+(defn parseToInt [st]
+  (map #(Integer/parseInt %)
+    (parsenum st)))
+
+(defn syn [n col1 col2]
+  (vector (vector n (get col2 (.indexOf col1 n))) 
+          (vector n (get col2 (inc (.indexOf col1 n))))))
+
+(defn conlane [col1 col2]
+    (mapv #(syn % col1 col2) col1))
+
+
+;#20
+
+(defn factorial [n]
+  (loop [a n
+         vc [1]]
+    (if (= a 1)
+      vc
+      (recur (dec a) (cons a vc)))))
+
+(defn rnf [n]
+  (reduce * (factorial n)))
+
+(defn pisdig [n]
+  (map read-string (map str (str n))))
+
+(defn p20 [] (reduce + (pisdig (rnf 100N))))
 
 ;#22
 (defn names [] (sort (read-string (slurp "src/basicone/arie/names.txt"))))
@@ -123,3 +433,26 @@
     (if (= (dignum (last vc)) n)
       (+ (count vc) 1)
       (recur n n2 (+ n1 n2) (conj vc (+ n1 n2))))))
+
+;#28
+(defn spiralvar [n]
+  (sort (flatten (take 4 (repeat (range 2 (inc n) 2))))))
+
+(defn diagspi [n]
+  (loop [vc [1]
+         pv (spiralvar n)]
+    (if (empty? pv)
+      vc
+      (recur (cons (+ (first vc) (first pv)) vc) (rest pv)))))
+
+(defn p28 []
+  (reduce + (diagspi 1001)))
+
+;#48
+(defn selfpow [num]
+  (apply * (take num (repeat num))))
+
+(defn p48 [nums]
+  (apply str (take-last 10 (str (apply + (map selfpow (range 1N nums)))))))
+
+;#18 19 21 26 29 31
