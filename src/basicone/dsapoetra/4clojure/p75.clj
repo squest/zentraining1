@@ -9,6 +9,11 @@
 ;;52
 ;;[c e]
 
+;;54
+(fn part [limit coll]
+  (if (>= (count coll) limit)
+    (cons (take limit coll) (part limit (drop limit coll)))))
+
 ;;55
 (fn [coll]
   (reduce (fn [counts x]
@@ -23,10 +28,10 @@
 ;;'(5 4 3 2 1)
 
 ;;58
-(fn comb [& funcs]
+(fn [& funcs]
   (fn [& args]
     (first
-      (reduce #(vector (apply %2 %1)) args (reverse funcs )))))
+      (reduce #(vector (apply %2 %1)) args (reverse funcs)))))
 
 
 ;;61
@@ -42,6 +47,15 @@
 ;;64
 ;; -> +
 
+;;65
+(fn [coll]
+  (let [x (str (first (str coll)))]
+    (cond
+      (= "{" x) :map
+      (= "c" x) :list
+      (= "[" x) :vector
+      (= "#" x) :set)))
+
 ;;66
 (fn gcd[a b]
   (if (= b 0)
@@ -49,11 +63,21 @@
     (recur b (mod a b))
     ))
 
+;;67
+(fn first-n-prime [x]
+  (take x (filter (fn [n] (= 2 (count (filter #(zero? (rem n %)) (range 1 (inc n)))))) (range 1 10000000))))
+
 ;;68
 ;;[7 6 5 4 3]
+
+;;70
+(fn [string]
+  (sort-by #(.toLowerCase %) (re-seq #"\w+" string)))
 
 ;;71
 ;;last
 
 ;;72
 ;;reduce +
+
+;;74

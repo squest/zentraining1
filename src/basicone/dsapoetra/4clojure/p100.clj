@@ -1,5 +1,14 @@
 (ns basicone.dsapoetra.4clojure.p100)
 
+;;76
+'(1 3 5 7 9 11)
+
+;;80
+(fn [x]
+  (if (= (reduce + (drop-last (filter #(zero? (rem x %)) (range 1 (inc x))))) (last (filter #(zero? (rem x %)) (range 1 (inc x)))))
+    true
+    false))
+
 ;;81
 (fn [a b] (into #{} (filter #(contains? a %) b)))
 

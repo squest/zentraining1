@@ -5,6 +5,7 @@
 (declare dignum)
 (declare prime?)
 (declare nextprime)
+(declare parseToInt)
 
 ;#sabdaquest
 (defn mapcycle [] (slurp "G:/Arie/Games/Counter-Strike 1.6/cstrike/mapcycle.txt"))
@@ -92,9 +93,6 @@
 (defn p3 [nf nl] (- (smosq nf nl) (sqosm nf nl)))
 
 ;#7
-(defn allfactor [n]
-    (filter #(= (rem n %) 0) (range 1 (inc n))))
-
 (defn prime? [n]
   (cond
     (even? n) false
@@ -271,6 +269,26 @@
 (defn maxmap []
   (max (maxdiagleft) (maxdiagright) (mapmaxadj) (mapmaxdown)))
 
+;#12 
+(defn halffactor [n]
+      (filter #(= (rem n %) 0) (range 1 (inc (Math/sqrt n)))))
+
+(defn allfactor [n]
+  (distinct
+    (concat (halffactor n) (map #(/ n %) (halffactor n)))))
+
+(defn factor? [n ft]
+  (integer? (/ ft n)))
+
+(defn trianumfct [num]
+  (loop [n 1
+         tn 0]
+    (if (>= (count (allfactor tn)) num)
+      tn
+      (recur (inc n) (+ tn n)))))
+
+
+
 ;#13
 (def p13num (slurp "src/basicone/arie/p13.txt"))
 
@@ -353,6 +371,25 @@
 (defn cletsum [n]
   (count (apply str (letsum n))))
 
+;#18
+(defn p18num []
+  (mapv #(apply vector %) 
+    (mapv parseToInt
+          (mapparser
+            (slurp "src/basicone/arie/p18.txt")))))
+
+(defn parseToInt [st]
+  (map #(Integer/parseInt %)
+    (parsenum st)))
+
+(defn syn [n col1 col2]
+  (vector (vector n (get col2 (.indexOf col1 n))) 
+          (vector n (get col2 (inc (.indexOf col1 n))))))
+
+(defn conlane [col1 col2]
+    (mapv #(syn % col1 col2) col1))
+
+
 ;#20
 
 (defn factorial [n]
@@ -417,3 +454,5 @@
 
 (defn p48 [nums]
   (apply str (take-last 10 (str (apply + (map selfpow (range 1N nums)))))))
+
+;#18 19 21 26 29 31
