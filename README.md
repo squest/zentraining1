@@ -4,7 +4,7 @@
 
 1. Primitive data types, collection data types, conditional flow, lexical scopes  
 2. Recursions : linear basic, linear tail-call, accumulative, binary tree recursion, tree recursions  
-3. Looping  
+3. Loop recur  
 4. Higher order functions : map/reduce, filter types, closures/partials, producer pattern
 5. Laziness & side-effects  
 6. Mutability, parallelism, and concurrency  
