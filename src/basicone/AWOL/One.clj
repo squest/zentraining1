@@ -62,13 +62,27 @@
 (defn product' [x] ;input is in collumn
   (if (empty? x)
     1
-    (* (first x) (product' (rest x))))))
+    (* (first x) (product' (rest x)))))
 
 
 (defn reverse' [x]
   (if (not (empty? x)) 
     (cons (last x) (reverse' (butlast x)))
     '()))
+
+
+
+(defn take-rec
+  ([x col] (take-rec x col []))
+  ([x [a & b] ans] (if (= x 0)
+                     ans
+                     (recur (dec x) b (conj ans a)))))
+  
+
+(defn drop-rec
+  ([x [a & b]] (if (= x 1)
+                 b
+                 (recur (dec x) b))))
 
 
 (def x [1 2 3 4 5 6 7 8 1])
