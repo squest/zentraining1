@@ -81,3 +81,6 @@
 ;;reduce +
 
 ;;74
+(fn [strings]
+  (let [coll (seq (clojure.string/split strings #","))]
+    (apply str (interpose "," (filter #(= 3 (count (str (Math/sqrt (Integer/parseInt %))))) coll)))))
