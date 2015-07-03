@@ -80,18 +80,28 @@
 
 
 ;No 25
-(defn list-fibo-maxval [first second max-value]
-  (if (> second max-value)
-    [first]
-    (concat [first] (list-fibo-maxval second (+' first second) max-value))))
+;(defn [(defn list-fibo-maxval [first second max-value]
+ ; (if (> second max-value)
+  ;  [first]
+   ; (concat [first] (list-fibo-maxval second (+' first second) max-value))))
 
 
-(defn max-fibo-digits [first second max-digits]
-  (if (>= (count (num-to-digits first)) max-digits)
-    (str "Max digits (user-defined): " max-digits 
-         ", max value: " first 
-         " with index: " (count (list-fibo-maxval 1 1 first)))
-    (max-fibo-digits second (+' first second) max-digits)))
+;(defn max-fibo-digits [first second max-digits]
+ ; (if (>= (count (num-to-digits first)) max-digits)
+  ;  (str "Max digits (user-defined): " max-digits 
+   ;      ", max value: " first 
+    ;     " with index: " (count (list-fibo-maxval 1 1 first)))
+    ;(max-fibo-digits second (+' first second) max-digits)))
 
-(defn indextovalue-fibo [index]
-  ())
+(def pibs 
+  (memoize (fn [idx]
+    (cond (= idx 1) 1
+      (= idx 2) 1
+      (= idx 3) 2
+      :else (+' (pibs (dec' (dec' idx))) (pibs (dec' idx)))))))
+
+
+(defn no5 [the-val idx]
+            (cond (>= (pibs idx) the-val) idx
+               :else (recur the-val (inc' idx))))
+               

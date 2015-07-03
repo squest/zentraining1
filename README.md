@@ -4,7 +4,7 @@
 
 1. Primitive data types, collection data types, conditional flow, lexical scopes  
 2. Recursions : linear basic, linear tail-call, accumulative, binary tree recursion, tree recursions  
-3. Looping  
+3. Loop recur  
 4. Higher order functions : map/reduce, filter types, closures/partials, producer pattern
 5. Laziness & side-effects  
 6. Mutability, parallelism, and concurrency  
@@ -48,17 +48,17 @@ leledumboalbino 798123_db0026a7048fe308eec1419c6f39066c
 
 ### 4 Clojure status
 
-<a href="http://www.4clojure.com/user/squest" target="_blank">squest</a>  
-<a href="http://www.4clojure.com/user/skadinyo" target="_blank">skadinyo</a>  
-<a href="http://www.4clojure.com/user/calvin91" target="_blank">calvin91</a>  
-<a href="http://www.4clojure.com/user/0dsapoetra" target="_blank">0dsapoetra</a>  
-<a href="http://www.4clojure.com/user/arie741" target="_blank">arie741</a>  
-<a href="http://www.4clojure.com/user/awol" target="_blank">awol</a>  
-<a href="http://www.4clojure.com/user/leledumbo" target="_blank">leledumbo</a>  
-<a href="http://www.4clojure.com/user/gurielamp" target="_blank">gurielamp</a>  
-<a href="http://www.4clojure.com/user/arifianbiing" target="_blank">arifianbiing</a>  
-<a href="http://www.4clojure.com/user/wisnumulya" target="_blank">wisnumulya</a>  
-<a href="http://www.4clojure.com/user/ularnegeri" target="_blank">ularnegeri</a>  
+<a href="http://www.4clojure.com/user/squest" target="_blank">squest</a>  151   
+<a href="http://www.4clojure.com/user/skadinyo" target="_blank">skadinyo</a>  133   
+<a href="http://www.4clojure.com/user/calvin91" target="_blank">calvin91</a>  119   
+<a href="http://www.4clojure.com/user/0dsapoetra" target="_blank">0dsapoetra</a>  103   
+<a href="http://www.4clojure.com/user/arie741" target="_blank">arie741</a>  83   
+<a href="http://www.4clojure.com/user/awol" target="_blank">awol</a>  62   
+<a href="http://www.4clojure.com/user/leledumbo" target="_blank">leledumbo</a>  50   
+<a href="http://www.4clojure.com/user/gurielamp" target="_blank">gurielamp</a>  42   
+<a href="http://www.4clojure.com/user/arifianbiing" target="_blank">arifianbiing</a>  63   
+<a href="http://www.4clojure.com/user/wisnumulya" target="_blank">wisnumulya</a>  20   
+<a href="http://www.4clojure.com/user/ularnegeri" target="_blank">ularnegeri</a>  15   
 
 
 
