@@ -74,6 +74,18 @@
   [n]
   (if (< n 10) [n] (conj (numcol (quot n 10)) (rem n 10))))
 
+(defn expt
+  [a m]
+  (if (== m 0) a (* a (expt a (dec m)))))
+
+
+
+
+
+
+
+
+
 
 
 
