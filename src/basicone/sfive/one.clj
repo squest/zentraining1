@@ -1,5 +1,5 @@
 (ns basicone.sfive.one)
-
+;; sieve
 (defn sieve1
   [lim]
   (let [primes (boolean-array (+ lim 1) true)
