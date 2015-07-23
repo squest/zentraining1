@@ -12,23 +12,21 @@
               (swap! res #(+ % i))))
         @res)))
 
-
-
 (defn sieve
-  [lim]
-  (let [llim (Math/sqrt lim)
+  [^long lim]
+  (let [llim (int (Math/sqrt lim))
         primes (boolean-array (+ lim 1) true)]
-    (loop [i (int 3) res (transient [2])]
+    (loop [i (int 3) res (int 2)]
       (if (> i lim)
-        (persistent! res)
+        res
         (if (aget primes i)
           (if (<= i llim)
-            (do (loop [j (* i i)]
+            (do (loop [j (int (* i i))]
                   (when (<= j lim)
                     (aset primes j false)
                     (recur (+ j i i))))
-                (recur (+ i 2) (conj! res i)))
-            (recur (+ i 2) (conj! res i)))
+                (recur (+ i 2) (+ res i)))
+            (recur (+ i 2) (+ res i)))
           (recur (+ i 2) res))))))
 
 (defn jumlah-faktor
