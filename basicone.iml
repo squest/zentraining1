@@ -15,7 +15,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Leiningen: clojure-complete:0.2.3" level="project" />
     <orderEntry type="library" name="Leiningen: com.taoensso/carmine:2.11.1" level="project" />
-    <orderEntry type="library" name="Leiningen: org.clojure/clojure:1.7.0-RC2" level="project" />
+    <orderEntry type="library" name="Leiningen: org.clojure/clojure:1.7.0" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/tools.nrepl:0.2.6" level="project" />
     <orderEntry type="library" name="Leiningen: com.taoensso/encore:1.34.0" level="project" />
     <orderEntry type="library" name="Leiningen: com.taoensso/nippy:2.9.0" level="project" />
