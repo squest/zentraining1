@@ -1,4 +1,4 @@
-;PROJECT EULER (BATCH 1)
+;EULER BATCH 1
 
 ;No 3
 (def factor
@@ -185,11 +185,15 @@
   ([x] (wordtonum x 0))
   ([x ans] (if (empty? x) ans (recur (rest x) (+ (lettertonum (first x)) ans)))))
 
+(def prob42 (slurp "soal42.txt"))
+
 (defn no42
   ([prob] (no42 prob 0 0))
   ([prob word ans] (cond (empty? prob) ans
-                     (= (first prob) \,) (if (tri? word) (recur (rest prob) 0 (inc ans)) (recur (rest prob) 0 ans))
+                   ;  (or (= (first prob) \,) (= (first prob) \"))  (if (tri? word) (recur (rest prob) 0 (inc ans)) (recur (rest prob) 0 ans))
                      :else (recur (rest prob) (+ word (lettertonum (first prob))) ans))))
+
+
 
 ;No 45
 (def penta (memoize (fn ([n] (/ (- (* 3 n n) n) 2)))))
@@ -223,7 +227,15 @@
              (> (hexa b) (tri a)) (recur n (inc' a) (dec' b))
              :else (recur n a (inc' b)))))))
 
-
+;No 50
+(defn no50
+  ([max] (no50 max (filter prime? (range max)) [] 0 0 0 0))
+  ([max list templist temp ctemp ans c] (cond (empty? list) (if (empty? templist) (str ans " as sum of " c " primes") (recur max (rest templist) [] 0 0 ans c))
+                                          (> temp max) (recur max (concat (rest templist) list) [] 0 0 ans c)
+                                    
+                                          (and (prime? temp) (< temp max) (>= ctemp c))
+                                    (recur max (rest list) (conj templist (first list)) (+ temp (first list)) (inc ctemp) temp ctemp)
+                                    :else (recur max (rest list) (conj templist (first list)) (+ temp (first list)) (inc ctemp) ans c))))
 ;===================================================================================================================================================(UNSOLVED)
 ;===================================================================================================================================================(UNSOLVED)
            
@@ -234,29 +246,22 @@
 
 ;No 44
 
-;No 50
-(defn no50
-  ([max] (no50 max (filter prime? (range max)) [] 0 0 0 0))
-  ([max list templist temp ctemp ans c] (cond (empty? list) (if (empty? templist) (str ans " as sum of " c " primes") (recur max (rest templist) [] 0 0 ans c))
-                                          (> temp max) (recur max (concat (rest templist) list) [] 0 0 ans c)
-                                    
-                                          (and (prime? temp) (< temp max) (>= ctemp c))
-                                    (recur max (rest list) (conj templist (first list)) (+ temp (first list)) (inc ctemp) temp ctemp)
-                                    :else (recur max (rest list) (conj templist (first list)) (+ temp (first list)) (inc ctemp) ans c))))
 
 ;No 92 chain
 (def which92?
  (memoize (fn
-  ([n a] (which92? (square a) a (numtodig n)))
-  ([n a thelist] (if (empty? thelist) (if (or (= n 1) (= n 89)) n (recur 0 a (numtodig n)))
-                 (recur (+' n (square (first thelist))) a (rest thelist)))))))
-;               (if (empty? thelist) n (recur (+' n (square (first thelist))) (rest thelist)))))
+            ([n] (which92? 0 (numtodig n)))
+            ([ans thelist] (if (empty? thelist) (cond (or (= ans 44) (= ans 32) (= ans 13) (= ans 10) (= ans 1)) 1
+                                                  (or (= ans 85) (= ans 89) (= ans 145) (= ans 42) (= ans 20) (= ans 4) (= ans 16) (= ans 37) (= ans 58) (= ans 89)) 89
+                                                  :else (recur 0 (numtodig ans)))
+                             (recur (+' ans (square (first thelist))) (rest thelist)))))))
+                             
 (defn no92
   ;(memoize (fn
-  ([max a] (no92 max a 1 0))
-  ([max a test ans] (cond  (> test max) ans
-                    (= 89 (which92? test a)) (recur max a (inc' test) (inc' ans))
-                    :else (recur max a (inc' test) ans))))
+  ([max] (no92 max 0))
+  ([max ans] (cond  (> 1 max) ans
+               (= 89 (which92? max)) (recur (dec' max) (inc' ans))
+                    :else (recur (dec' max) ans))))
 
 ;128
 
@@ -270,7 +275,6 @@
                           :else (recur m (dec' n) (+' ans (smpd n 1))))))))
 
 (def a [1 2 3])
-(def y [22 33 44])
+(def r [22 33 44])
 
 (def x [1 2 3 4 5 6 2 1])
-     

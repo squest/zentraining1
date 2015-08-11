@@ -1,5 +1,15 @@
 ;EULER BATCH 2 (11-30)
 
+
+(defn ubah [a] (Integer/parseInt a))
+(def exp
+  (memoize (fn [a n]
+             (cond
+               (= n 0) 1
+               (= n 1) a
+               :else (*' (exp a (quot n 2)) (exp a (quot n 2)) (exp a (rem n 2)))))))
+
+
 ;No 11
 (def try11 (map str (filter #(not (= " " %)) (map str (seq (slurp "soal11.txt"))))))
 
@@ -226,3 +236,6 @@
   ([d change] (cond 
                 (= (mod (* 10 change) 10) 0.0) (/ change 10)
                 :else (recur d (* 10 change)))))                     
+
+
+(def a 1)
