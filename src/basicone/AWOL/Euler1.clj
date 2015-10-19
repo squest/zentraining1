@@ -1,39 +1,14 @@
 ;EULER BATCH 1
 
 ;No 3
-(def factor
-  ;factor of x above y value are...
-  (memoize (fn
-             ([x] (factor x 1 []))
-             ([x y ans] (cond 
-                      (> y (/ x 2)) (conj ans y)
-                      (= x y) (conj ans y)
-                      (= (mod x y) 0) (recur x (inc' y) (conj ans y))
-                      :else (recur x (inc' y) ans))))))
 
-(def prime?
- (memoize (fn
-    ([num] (prime? num 1 1))
-    ([num try slot] (cond 
-                    (< num 2) false
-                    (or (= num 2) (= num 3)) true
-                    (> try (Math/sqrt num)) true
-                    (< slot 1) false
-                    :else (if (= (mod num (inc' try)) 0) (recur num (inc' try) (dec' slot))
-                            (recur num (inc' try) slot)))))))
 
 (defn no3 [x y]
   (if (and (= (mod x y) 0) (prime? y))
     y
     (recur x (dec y))))
 
-(defn smpd [x y]
-  ;smallest prime divisor of x above y
-  (cond (<= x y) x
-    (prime? y) (if (= (mod (/ x y) 1) 0)
-                 y
-                 (recur x (inc' y)))
-    :else (recur x (inc' y))))
+
 
 
 ;No 4
@@ -64,12 +39,7 @@
   (if (= (mod guess div) 0)
       guess
       (recur (+' guess 1) div)))
-(def exp
-  (memoize (fn [a n]
-             (cond
-               (= n 0) 1
-               (= n 1) a
-               :else (*' (exp a (quot n 2)) (exp a (quot n 2)) (exp a (rem n 2)))))))
+
 (def addexp 
   (memoize (fn 
              ([begin end] (addexp begin end 0))
@@ -90,9 +60,9 @@
 
 
 ;No8
-(defn ubah [a] (Integer/parseInt a))
 
-(def soal8 (map ubah (map str (seq (slurp "soal8.txt")))))
+
+(def soal8 (map ubah (map str (seq (slurp "resources/soal8.txt")))))
 
 (defn no8
   ([prob] (no8 prob 13 0))
@@ -102,19 +72,7 @@
                        (recur (rest prob) urut (reduce * (take urut prob)))))))
 
 ;No 9
-(def square 
-  (memoize (fn [x] (* x x))))
-(def phyt
-  ; a^2 + b^2 = c^2
-  (memoize (fn
-             ([jumlah] (phyt jumlah 1 1 1))
-             ([jumlah a b c] (cond 
-                               (= (* c c) (+ (* a a) (* b b))) (if (= (+ a b c) jumlah) (str "a=" a " b=" b " c=" c)
-                                                                 (recur jumlah b b (inc' c)))
-                               (= (* c c) jumlah) "None"
-                               (> a b) (recur jumlah 1 (inc' b) c)
-                               (> b c) (recur jumlah 1 1 (inc' c))
-                               :else (recur jumlah (inc' a) b c))))))
+
 
 ;No 10
 (def no10
@@ -127,14 +85,7 @@
                         :else (recur (dec' n) ans))))))
            
 ;No 34
-(defn numtodig [n]
-  (cond (or (= (quot n 10) 0) (= (quot n 10) 0.0)) [n]
-    :else (concat (numtodig (quot n 10)) [(mod n 10)])))
 
-(defn factorial [x]
-    (cond (= x 0) 1
-      (= x 1) 1
-      :else (* x (factorial (- x 1)))))
 
 (def no34?
   (memoize (fn
@@ -166,38 +117,9 @@
                   :else (recur x (inc test) ans))))
 
 ;No42
-(def tri (memoize (fn ([n] (/ (+ (* n n) n) 2)))))
-(defn tri?
-  ([x] (tri? x 1))
-  ([x test] (cond (< x 1) false
-              (> (tri test) x) false
-              (= (tri test) x) true
-              :else (recur x (inc test)))))
-
-(defn lettertonum [x] (cond (= x \A) 1                         (= x \B) 2                         (= x \C) 3                         (= x \D) 4
-                        (= x \E) 5                         (= x \F) 6                         (= x \G) 7                         (= x \H) 8
-                        (= x \I) 9                         (= x \J) 10                         (= x \K) 11                         (= x \L) 12
-                        (= x \M) 13                         (= x \N) 14                         (= x \O) 15                         (= x \P) 16
-                        (= x \Q) 17                         (= x \R) 18                         (= x \S) 19                         (= x \T) 20
-                        (= x \U) 21                         (= x \V) 22                         (= x \W) 23                         (= x \X) 24
-                        (= x \Y) 25                         (= x \Z) 26))
-(defn wordtonum 
-  ([x] (wordtonum x 0))
-  ([x ans] (if (empty? x) ans (recur (rest x) (+ (lettertonum (first x)) ans)))))
-
-(def prob42 (slurp "soal42.txt"))
-
-(defn no42
-  ([prob] (no42 prob 0 0))
-  ([prob word ans] (cond (empty? prob) ans
-                   ;  (or (= (first prob) \,) (= (first prob) \"))  (if (tri? word) (recur (rest prob) 0 (inc ans)) (recur (rest prob) 0 ans))
-                     :else (recur (rest prob) (+ word (lettertonum (first prob))) ans))))
 
 
 
-;No 45
-(def penta (memoize (fn ([n] (/ (- (* 3 n n) n) 2)))))
-(def hexa (memoize (fn ([n] (- (* 2 n n) n)))))
 
 (def no45
   (memoize (fn
@@ -250,11 +172,11 @@
 ;No 92 chain
 (def which92?
  (memoize (fn
-            ([n] (which92? 0 (numtodig n)))
+            ([n] (which92? 0 (core/numtodig n)))
             ([ans thelist] (if (empty? thelist) (cond (or (= ans 44) (= ans 32) (= ans 13) (= ans 10) (= ans 1)) 1
                                                   (or (= ans 85) (= ans 89) (= ans 145) (= ans 42) (= ans 20) (= ans 4) (= ans 16) (= ans 37) (= ans 58) (= ans 89)) 89
-                                                  :else (recur 0 (numtodig ans)))
-                             (recur (+' ans (square (first thelist))) (rest thelist)))))))
+                                                  :else (recur 0 (core/numtodig ans)))
+                             (recur (+' ans (core/square (first thelist))) (rest thelist)))))))
                              
 (defn no92
   ;(memoize (fn
@@ -262,6 +184,12 @@
   ([max ans] (cond  (> 1 max) ans
                (= 89 (which92? max)) (recur (dec' max) (inc' ans))
                     :else (recur (dec' max) ans))))
+
+(defn no92b [max]
+  (->> (range 1 (inc max))
+       (map which92?)
+       (remove #(= 1 %))
+       (count)))
 
 ;128
 
