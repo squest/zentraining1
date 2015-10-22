@@ -32,7 +32,7 @@
       (= a (reduce + (map #(core/exp % 5) (core/numtodig a)))))
 
 (defn no30
-      ([a] (no30 a 0 1000000))
+      ([a] (no30 a 0 1500000))
       ([a ans end] (cond (> a end) ans
                          (ispower? a) (recur (inc a) (+ a ans) end)
                          :else (recur (inc a) ans end))))
