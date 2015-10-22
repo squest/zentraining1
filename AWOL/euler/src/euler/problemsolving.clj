@@ -5,7 +5,29 @@
     [clojure.edn :as edn]))/
 
 
-;No 5
+;No29
+(defn no29
+      ([start end] (no29 (range start (inc end)) start end [] []))
+      ([col start end ans temp] (cond (> start (inc end)) (count ans)
+                                      (not (empty? temp)) (if (some #(= (first temp) %) ans)
+                                                            (recur col start end ans (rest temp))
+                                                            (recur col start end (cons (first temp) ans) (rest temp)))
+                                      :else (recur col (inc start) end ans (map #(core/exp start %) col)))))
+
+;No30
+(defn ispower? [a]
+      (= a (reduce + (map #(core/exp % 5) (core/numtodig a)))))
+
+(defn no30
+      ([a] (no30 a 0 1500000))
+      ([a ans end] (cond (> a end) ans
+                         (ispower? a) (recur (inc a) (+ a ans) end)
+                         :else (recur (inc a) ans end))))
+
+
+;====================================================================================================
+
+;No 23
 (def divisable
   (memoize (fn
              ([guess div] (divisable guess div div))
@@ -27,15 +49,13 @@
                                     :else (recur (+' begin 1) end (+' (core/exp begin begin) ans)))))))
 
 
-;No30
-(defn ispower? [a]
-      (= a (reduce + (map #(core/exp % 5) (core/numtodig a)))))
-
-(defn no30
-      ([a] (no30 a 0 1500000))
-      ([a ans end] (cond (> a end) ans
-                         (ispower? a) (recur (inc a) (+ a ans) end)
-                         :else (recur (inc a) ans end))))
+;No47
+(defn no47
+      ([x num] (no47 x num []))
+      ([x num ans] (cond () (> num (count (rest (core/factor x)))) (recur (inc x) num)
+                         (every? core/prime? (take num (rest (core/factor x)))) x
+                         :else (recur (inc x) num))))
+;([x] (no47 x))
 
 ;No 92 chain
 (defn which92b? [n]
