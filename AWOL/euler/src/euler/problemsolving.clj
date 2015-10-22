@@ -5,6 +5,37 @@
     [clojure.edn :as edn]))/
 
 
+;No 5
+(def divisable
+  (memoize (fn
+             ([guess div] (divisable guess div div))
+             ([guess dectest maxdiv] (if (= dectest 1)
+                                       guess
+                                       (if (= (mod guess dectest) 0)
+                                         (recur guess (dec' dectest) maxdiv)
+                                         (recur (inc' guess) maxdiv maxdiv)))))))
+(defn single-divisable [guess div]
+      (if (= (mod guess div) 0)
+        guess
+        (recur (+' guess 1) div)))
+
+(def addexp
+  (memoize (fn
+             ([begin end] (addexp begin end 0))
+             ([begin end ans] (cond (= begin end) (+' (core/exp begin begin) ans)
+                                    ;(<= (+' begin 10) end) (+' (recur begin (+' begin 9)) (addexp (+' begin 10) end))
+                                    :else (recur (+' begin 1) end (+' (core/exp begin begin) ans)))))))
+
+
+;No30
+(defn ispower? [a]
+      (= a (reduce + (map #(core/exp % 5) (core/numtodig a)))))
+
+(defn no30
+      ([a] (no30 a 0 1000000))
+      ([a ans end] (cond (> a end) ans
+                         (ispower? a) (recur (inc a) (+ a ans) end)
+                         :else (recur (inc a) ans end))))
 
 ;No 92 chain
 (defn which92b? [n]

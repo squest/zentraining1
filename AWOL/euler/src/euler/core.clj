@@ -71,7 +71,7 @@
       ([x] (wordtonum x 0))
       ([x ans] (if (empty? x) ans (recur (rest x) (+ (lettertonum (first x)) ans)))))
 
-
+(defn exp [a n] (reduce * (repeat n a)))
 
 (defn ubah [a] (Integer/parseInt a))
 
