@@ -50,6 +50,7 @@
 
 
 ;No47
+(defn consecut)
 (defn no47
       ([x num] (no47 x num []))
       ([x num ans] (cond () (> num (count (rest (core/factor x)))) (recur (inc x) num)
