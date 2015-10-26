@@ -5,8 +5,8 @@
   (memoize (fn
              ([x] (factor x 1 []))
              ([x y ans] (cond
-                          (> y (/ x 2)) (conj ans y)
-                          (= x y) (conj ans y)
+                          (> y (/ x 2)) (conj ans x)
+                          (= x y) (conj ans x)
                           (= (mod x y) 0) (recur x (inc' y) (conj ans y))
                           :else (recur x (inc' y) ans))))))
 
@@ -26,8 +26,17 @@
                                :else (if (= (mod num (inc' try)) 0) (recur num (inc' try) (dec' slot))
                                                                     (recur num (inc' try) slot)))))))
 
-(def square
-  (memoize (fn [x] (* x x))))
+(defn divisor [x]
+  (->> (range 1 (inc (/ x 2)))
+       (filter #(= 0 (mod x %)))))
+
+(defn perfect? [x]
+  (= (reduce + (divisor x)) x))
+
+(defn primefactor [x] (filter prime? (factor x)))
+
+(defn square [x] (* x x))
+
 (def exp
   (memoize (fn [a n]
                (cond
@@ -58,7 +67,7 @@
 
 (defn numtodig [n]
       (cond (or (= (quot n 10) 0) (= (quot n 10) 0.0)) [n]
-            :else (concat (numtodig (quot n 10)) [(mod n 10)])))
+            :else (conj (numtodig (quot n 10)) (mod n 10) )))
 
 (defn lettertonum [x] (cond (= x \A) 1                         (= x \B) 2                         (= x \C) 3                         (= x \D) 4
                             (= x \E) 5                         (= x \F) 6                         (= x \G) 7                         (= x \H) 8
@@ -71,9 +80,16 @@
       ([x] (wordtonum x 0))
       ([x ans] (if (empty? x) ans (recur (rest x) (+ (lettertonum (first x)) ans)))))
 
-(defn expt [a n] (reduce * (repeat n a)))
-
 (defn ubah [a] (Integer/parseInt a))
+
+(defn palindrome? [x]
+  (cond (or (coll? x) (string? x))
+        (if (or (= (count x) 0) (= (count x) 1))
+          true
+          (if (= (first x) (last x))
+            (palindrome? (rest (butlast x)))
+            false))
+        :else (recur (numtodig x))))
 
 
 

@@ -5,6 +5,13 @@
     [clojure.edn :as edn]))/
 
 
+;ffirst, map-indexed, keep, keep-indexed,
+;(using #{} as lambda function in map/some/filter/remove),
+;group-by, partition, partition-by, get-in, assoc-in, update-in, split-at, split-with, take-while, drop-while,
+;drop-last, interleave, interpose, comp, juxt, partial, complement,
+;zipmap, mapcat, take-last, reductions, merge, merge-with, select-keys,
+;(map destructuring {:keys [some-key another-key]})
+
 ;No29
 (defn no29
       ([start end] (no29 (range start (inc end)) start end [] []))
@@ -24,64 +31,126 @@
                          (ispower? a) (recur (inc a) (+ a ans) end)
                          :else (recur (inc a) ans end))))
 
+;No63
+(defn no63
+  ([a] (no63 a 1 0))    ; a is start
+  ([a n ans]
+   (let [powcount (->> (core/exp a n)
+                       (core/numtodig)
+                       (count))]
+     (cond (> (count (core/numtodig (core/exp 2 n))) n) ans
+           (> powcount n) (recur 1 (inc n) ans)
+           (= powcount n) (recur (inc a) n (inc ans))
+           :else (recur (inc a) n ans)))))
 
-;====================================================================================================
+;No74
+(defn chainfac [x]
+  (->> (core/numtodig x)
+       (map core/factorial)
+       (reduce +)))
 
-;No 23
-(def divisable
-  (memoize (fn
-             ([guess div] (divisable guess div div))
-             ([guess dectest maxdiv] (if (= dectest 1)
-                                       guess
-                                       (if (= (mod guess dectest) 0)
-                                         (recur guess (dec' dectest) maxdiv)
-                                         (recur (inc' guess) maxdiv maxdiv)))))))
-(defn single-divisable [guess div]
-      (if (= (mod guess div) 0)
-        guess
-        (recur (+' guess 1) div)))
+(defn chain74 [x]
+  (->> (take 60 (iterate chainfac x))))
 
-(def addexp
-  (memoize (fn
-             ([begin end] (addexp begin end 0))
-             ([begin end ans] (cond (= begin end) (+' (core/exp begin begin) ans)
-                                    ;(<= (+' begin 10) end) (+' (recur begin (+' begin 9)) (addexp (+' begin 10) end))
-                                    :else (recur (+' begin 1) end (+' (core/exp begin begin) ans)))))))
+(defn unique? [x]
+  (if (= (count (chain74 x)) (count (set (chain74 x)))) true false))
 
+(defn no74 [max]
+  (->> (range 1 max)
+       (map #(unique? %))
+       (filter #(= true %))
+       (count)))
 
-;No47
-(defn consecut)
-(defn no47
-      ([x num] (no47 x num []))
-      ([x num ans] (cond () (> num (count (rest (core/factor x)))) (recur (inc x) num)
-                         (every? core/prime? (take num (rest (core/factor x)))) x
-                         :else (recur (inc x) num))))
-;([x] (no47 x))
-
-;No 92 chain
-(defn which92b? [n]
+;No 92 chain ;"Elapsed time: 983616.393211 msecs"
+(defn which92? [n]
   (if (or (= n 89) (= n 1)) n
                             (->> (core/numtodig n)
                                  (map core/square)
                                  (reduce +)
                                  (recur))))
-
-(defn no92b [max]
-  (->> (range 1 (inc max))
-       (map which92b?)
-       (remove #(= 1 %))
+(defn no92 [max]
+  (->> (range 1 max)
+       (map which92?)
+       (filter #(= 89 %))
        (count)))
 
-(def which92?
-  (memoize (fn
-             ([n] (which92? 0 (core/numtodig n)))
-             ([ans thelist] (if (empty? thelist) (cond (or (= ans 44) (= ans 32) (= ans 13) (= ans 10) (= ans 1)) 1
-                                                       (or (= ans 85) (= ans 89) (= ans 145) (= ans 42) (= ans 20) (= ans 4) (= ans 16) (= ans 37) (= ans 58) (= ans 89)) 89
-                                                       :else (recur 0 (core/numtodig ans)))
-                                                 (recur (+' ans (core/square (first thelist))) (rest thelist)))))))
-(defn no92
-  ;(memoize (fn
-  ([max] (no92 max 0))
-  ([max ans] (cond  (> 1 max) ans
-                    (= 89 (which92b? max)) (recur (dec' max) (inc' ans))
-                    :else (recur (dec' max) ans))))
+
+
+;====================================================================================================
+
+;No 23
+(defn abund? [x]
+  (> (reduce + (core/divisor x)) x))
+
+(defn abunsum? [x]
+  (cond (odd? x) false
+        (abund? (quot x 2)) true
+        :else false))
+
+(defn no23 [max]
+  (->> (range 1 (inc max))
+       (filter #(not (abunsum? %)))
+       (reduce +)))
+
+;No47
+(defn consec? [x]
+      (cond (> 2 (count x)) true
+            (= 1 (- (second x) (first x))) true
+            :else false))
+
+(defn primefac? [x num]
+  (cond (> num (count (core/primefactor x))) false
+        (= num (count (core/primefactor x))) true
+        :else false))
+
+(defn no47
+      ([x num] (no47 x num []))
+      ([x num ans] (cond (= x 200000) x                     ;-> checked until 40000
+                         (= (count ans) num) (if (consec? ans) ans (recur (last ans) num (vec (nthnext ans 1))))
+                         (primefac? x num) (cond (empty? ans) (recur (inc x) num [x])
+                                                 (consec? (conj [(last ans)] x)) (recur (inc x) num (conj ans x))
+                                                 :else (recur (inc x) num [x]))
+                         :else (recur (inc x) num ans))))
+
+(defn consecx? [num col]
+  (->> (if (consec? (take num col)) (take num col)
+                                  (recur (rest col) num))))
+
+(defn no47b [max num]
+  (->> (range 1 (inc max))
+       (filter #(primefac? % num))
+       ))
+
+
+
+
+;No55
+(defn rvrs [x]
+  (->> (core/numtodig x)
+       (reverse)
+       (apply str)
+       (core/ubah)))
+
+(defn plusmirror [x]
+  (+' x (rvrs x)))
+
+(defn lych?
+  ([x] (lych? (plusmirror x) 0))
+  ([x a] (cond (> a 49) true (core/palindrome? x) false
+               :else (recur (plusmirror x) (inc a)))))
+
+(defn no55
+  ([max] (no55 (dec max) 0))
+  ([max ans] (cond (< max 1) ans
+                   (lych? max) (recur (dec max) (inc ans))
+                   :else (recur (dec max) ans))))
+
+
+
+
+
+;No95
+(defn amic? [x]
+  (let [test (reduce + (core/divisor x))]
+    (if (= test (reduce + (core/divisor test))) true false)))
+
