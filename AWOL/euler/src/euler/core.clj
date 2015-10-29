@@ -69,7 +69,8 @@
   (cond (or (= (quot n 10) 0) (= (quot n 10) 0.0)) [n]
     :else (conj (numtodig (quot n 10)) (mod n 10) )))
 
-(defn lettertonum [x] (cond (= x \A) 1                         (= x \B) 2                         (= x \C) 3                         (= x \D) 4
+(defn lettertonum [x]
+  (cond (= x \A) 1                         (= x \B) 2                         (= x \C) 3                         (= x \D) 4
                         (= x \E) 5                         (= x \F) 6                         (= x \G) 7                         (= x \H) 8
                         (= x \I) 9                         (= x \J) 10                         (= x \K) 11                         (= x \L) 12
                         (= x \M) 13                         (= x \N) 14                         (= x \O) 15                         (= x \P) 16
