@@ -24,10 +24,7 @@
 ;No70
 (defn no70 [x]
   (sort-by #(str (clojure.string/lower-case %))
-           (#(clojure.string/split % #" ")
-             (->> (remove #(= \! %) x)
-                  (remove #(= \. %))
-                  (apply str)))))
+           (clojure.string/split x #"!|\.|\s")))
 
 ;No74
 (defn no74 [x]
