@@ -1,6 +1,6 @@
-(ns euler.problemsolving
+(ns euler-4clojure.problemsolving
   (:require
-    [euler.core :as core]
+    [euler-4clojure.core :as core]
     [clojure.string :as cs]
     [clojure.edn :as edn]))/
 
