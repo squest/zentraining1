@@ -21,6 +21,29 @@
 (defn no46
   ([x] #(x %2 %1)))
 
+;No70
+(defn no70 [x]
+  (sort-by #(str (clojure.string/lower-case %))
+           (#(clojure.string/split % #" ")
+             (->> (remove #(= \! %) x)
+                  (remove #(= \. %))
+                  (apply str)))))
+
+;No74
+(defn no74 [x]
+  (->> (map #(Integer/parseInt %)
+            (clojure.string/split x #","))
+       (filter #(= \0 (last (str (Math/sqrt %)))))
+       (interpose ",")
+       (apply str)))
+
+;No80
+(defn no80 [x]
+  (->> (range 1 x)
+       (filter #(= 0 (mod x %)))
+       (reduce +)
+       (= x)))
+
 ;No82
 (defn no82a [x & xs]
   (if (and (empty? xs) (not (coll? (first x)))) x
