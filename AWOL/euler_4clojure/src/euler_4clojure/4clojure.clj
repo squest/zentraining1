@@ -21,6 +21,17 @@
 (defn no46
   ([x] #(x %2 %1)))
 
+;No59
+(defn no59 [& fs]
+    (fn [& xs]
+        (map #(apply % xs) fs)))
+
+;No60
+(fn no60
+    ([f a [x & xs]] (cons a (lazy-seq (when x (no60 f (f a x) xs)))))
+    ([f [x & xs]] (no60 f x xs)))
+
+
 ;No70
 (defn no70 [x]
   (sort-by #(str (clojure.string/lower-case %))
