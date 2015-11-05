@@ -17,9 +17,12 @@
          (apply interleave)
          (partition n2))))
 
-;NO46
+;No46
 (defn no46
   ([x] #(x %2 %1)))
+
+;No50
+#(vals (group-by type %))
 
 ;No59
 (defn no59 [& fs]
@@ -63,15 +66,8 @@
     (map flatten x)))
 
 ;No90
-(defn no90 [a b]
-  (let [[x & xs] a]
-    (if xs (cons (map #(vector x %) b) (no90 xs b))
-           (map #(vector xs %) b))))
+#(set (for [x (vec %1) y (vec %2)] [x y]))
 
-(defn no90b [a b]
-  (if (empty? (rest a))
-    (map #(vector (first a) %) b)
-    (mapcat (#(vector (first a) %) b) (no90b (rest a) b))))
 
 ;No99
 #(map read-string (map str (str (* %1 %2))))
