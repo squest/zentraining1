@@ -24,6 +24,13 @@
 ;No50
 #(vals (group-by type %))
 
+;No55
+#(let [a (group-by identity %)]
+      (apply assoc {}
+             (interleave (keys a) (map count (vals a)))))
+;No58
+
+
 ;No59
 (defn no59 [& fs]
     (fn [& xs]
@@ -68,6 +75,13 @@
 ;No90
 #(set (for [x (vec %1) y (vec %2)] [x y]))
 
+;No91
+(defn no91 [x]
+    (let [[a b & c] (vec x)]
+         (if b (if (= (last a) (first b))
+                 (no91 (rest x))
+                 false)
+               false)))
 
 ;No99
 #(map read-string (map str (str (* %1 %2))))

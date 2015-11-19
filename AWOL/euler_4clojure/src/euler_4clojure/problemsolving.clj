@@ -12,6 +12,19 @@
 ;zipmap, mapcat, take-last, reductions, merge, merge-with, select-keys,
 ;(map destructuring {:keys [some-key another-key]})
 
+;No 23
+(defn abund? [x]
+  (> (reduce + (core/divisor x)) x))
+
+(defn abunsum? [x]
+  (cond (odd? x) false
+        (abund? (quot x 2)) true
+        :else false))
+
+(defn no23 [max]
+  (->> (range 1 (inc max))
+       (reduce +)))
+
 ;No29
 (defn no29
   ([start end] (no29 (range start (inc end)) start end [] []))
@@ -30,6 +43,18 @@
   ([a ans end] (cond (> a end) ans
                  (ispower? a) (recur (inc a) (+ a ans) end)
                  :else (recur (inc a) ans end))))
+
+;No41
+(defn pandigital? [x]
+  (let [a (core/numtodig x)]
+    (and (= (count a)
+            (count (set a)))
+         (= (sort a) (range 1 (inc (count a)))))))
+
+(defn no41 [x]
+  (cond (= x 0) 0
+        (and (pandigital? x) (core/prime? x)) x
+        :else (recur (dec x))))
 
 ;No63
 (defn no63
@@ -78,19 +103,15 @@
 
 ;====================================================================================================
 
-;No 23
-(defn abund? [x]
-  (> (reduce + (core/divisor x)) x))
+;No22
+(->> (slurp "resources/test.edn")
+     (remove #(= \, %))
+     (apply str)
+     (vector)
+     (sort-by str))
 
-(defn abunsum? [x]
-  (cond (odd? x) false
-    (abund? (quot x 2)) true
-    :else false))
 
-(defn no23 [max]
-  (->> (range 1 (inc max))
-    (filter #(not (abunsum? %)))
-    (reduce +)))
+
 
 ;No47
 (defn consec? [x]
@@ -113,8 +134,9 @@
                  :else (recur (inc x) num ans))))
 
 (defn consecx? [num col]
-  (->> (if (consec? (take num col)) (take num col)
-         (recur (rest col) num))))
+  (let [x (core/numtodig num)]
+    (if (core/numtodig num (take num col)) (take num col)
+                                           (recur (rest col) num))))
 
 (defn no47b [max num]
   (->> (range 1 (inc max))
