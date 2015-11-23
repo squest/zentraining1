@@ -158,12 +158,13 @@
 
 (defn lych?
   ([x] (lych? (plusmirror x) 0))
-  ([x a] (cond (> a 49) true (core/palindrome? x) false
+  ([x a] (cond (> a 49) true
+               (core/palindrome? x) false
            :else (recur (plusmirror x) (inc a)))))
 
 (defn no55
   ([max] (no55 (dec max) 0))
-  ([max ans] (cond (< max 1) ans
+  ([max ans] (cond (< max 10) ans
                (lych? max) (recur (dec max) (inc ans))
                :else (recur (dec max) ans))))
 
