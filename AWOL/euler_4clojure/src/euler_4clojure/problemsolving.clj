@@ -75,6 +75,20 @@
                      (ispower? a) (recur (inc a) (+ a ans) end)
                      :else (recur (inc a) ans end))))
 
+;No36
+(defn no36 [x]
+  (->> (filter core/palindrome? (range 1 (inc x)))
+       (filter #(core/palindrome? (core/dectobin %)))
+       (reduce +)))
+
+
+;No40 1 1 5 3 7 2 1
+(defn no40 [x y]
+  (let [a (mapcat core/numtodig (range 1 (inc x)))]
+    (if (< (count a) y)
+      false
+      (nth a (dec y)))))
+
 ;No41
 (defn pandigital? [x]
   (let [a (core/numtodig x)]
@@ -86,6 +100,8 @@
   (cond (= x 0) 0
         (and (pandigital? x) (core/prime? x)) x
         :else (recur (dec x))))
+
+
 
 ;No47
 (defn consec? [x coll]
@@ -108,16 +124,12 @@
     (recur (inc x))))
 
 ;No63
-(defn no63
-  ([a] (no63 a 1 0))                                        ; a is start
-  ([a n ans]
-   (let [powcount (->> (core/exp a n)
-                       (core/numtodig)
-                       (count))]
-     (cond (> (count (core/numtodig (core/exp 2 n))) n) ans
-           (> powcount n) (recur 1 (inc n) ans)
-           (= powcount n) (recur (inc a) n (inc ans))
-           :else (recur (inc a) n ans)))))
+(defn powcount [a n]
+  (->> (core/exp a n)
+       (core/numtodig)
+       (count)))
+
+
 
 ;No74
 (defn chainfac [x]
@@ -161,6 +173,8 @@
      (vector)
      (sort-by str))
 
+
+
 ;No55
 (defn rvrs [x]
   (->> (core/numtodig x)
@@ -184,7 +198,18 @@
                    :else (recur (dec max) ans))))
 
 
+(defn no63
+  ([a] (no63 a 1 0))                                        ; a is start
+  ([a n ans]
+   (cond (>= (powcount a n) n) (if (= (powcount a n) n)
+                                 (recur (inc a) 1 (inc ans))
+                                 (recur (inc a) 1 ans))
 
+         (= a 2) a
+         (= n 3) n
+         :else (recur a (inc n) ans)
+         ;(> (count (core/numtodig (core/exp 2 n))) n) ans
+         )))
 
 
 ;No95
