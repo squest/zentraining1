@@ -221,3 +221,7 @@
 (def r [22 33 44])
 
 (def x [1 2 3 4 5 6 2 1])
+
+(defn prime? [x]
+  (not (some #(= 0 %) (map
+                        #(mod x %) (#(range 2 (inc (/ % 2))) x)))))
